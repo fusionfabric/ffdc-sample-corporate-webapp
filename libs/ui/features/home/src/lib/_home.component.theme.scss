@@ -1,0 +1,16 @@
+@mixin home-theme($theme) {
+    $foreground: map-get($theme, "foreground");
+    $backgrounds: map-get($theme, "background");
+    $background: mat-color($backgrounds, "background");
+
+    header {
+        h1,
+        h2 {
+            color: #fff;
+        }
+    }
+
+    .wave {
+        fill: $background;
+    }
+}

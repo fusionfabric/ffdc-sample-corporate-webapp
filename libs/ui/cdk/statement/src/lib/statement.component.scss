@@ -1,0 +1,23 @@
+@import "~@ffdc/uxg-angular-theme/lib/core/theming/palette";
+@import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
+
+$green: map-get($uxg-grass, 100);
+
+.app-statement-skeleton {
+    uxg-skeleton-text {
+        margin: 10px 0;
+        padding: 10px 0;
+    }
+}
+
+.credit {
+    color: $green;
+}
+
+uxg-table {
+    margin: -$uxg-spacing-3;
+    margin-bottom: -$uxg-spacing-3 !important;
+    margin-top: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}

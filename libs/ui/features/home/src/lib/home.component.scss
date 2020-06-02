@@ -1,0 +1,67 @@
+@import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
+
+$margin: $uxg-spacing-4 + $uxg-spacing-2; // 32px;
+
+header {
+    background: linear-gradient(to right bottom, #0b0c3e 0, #1b1d5d 35%, #493696 85%, #694ed6);
+    margin: -$margin (-$margin) 0;
+    padding: $margin;
+    position: relative;
+    height: 230px;
+
+    h2 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .paginator {
+        display: flex;
+        align-self: flex-end;
+    }
+}
+
+.accounts-list {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: $uxg-spacing-3;
+    margin-top: $uxg-spacing-4;
+}
+
+.wave {
+    margin: 0 (-$margin) -5px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 0;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    header {
+        margin-bottom: 420px;
+    }
+
+    .accounts-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    header {
+        margin-bottom: 100px;
+    }
+
+    .accounts-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    .accounts-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
