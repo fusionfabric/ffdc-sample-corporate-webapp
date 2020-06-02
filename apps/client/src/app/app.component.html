@@ -1,0 +1,22 @@
+<uxg-global-nav [appName]="appName" [navigationNodes]="navigationNodes" [appContent]="appContent"
+    [navbarAction]="navbarAction" (nodeChosen)="nodeChosen($event)" (brandAction)="brandAction()" (logout)="logout()">
+</uxg-global-nav>
+
+<ng-template #appContent>
+    <router-outlet></router-outlet>
+</ng-template>
+
+<ng-template #navbarAction>
+    <button mat-icon-button color="neutral" aria-label="notifications" aria-expanded="true">
+        <mat-icon>notifications</mat-icon>
+    </button>
+
+    <uxg-user-profile-menu dense [user]="auth.user$ | async">
+        <ng-template uxgUserProfilePanelActions>
+            <button mat-flat-button color="primary" dense (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+            </button>
+        </ng-template>
+    </uxg-user-profile-menu>
+</ng-template>

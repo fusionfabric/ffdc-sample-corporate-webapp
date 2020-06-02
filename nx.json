@@ -1,0 +1,52 @@
+{
+  "npmScope": "ffdc-corporate-banking-sample",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "client": {
+      "tags": []
+    },
+    "server": {
+      "tags": []
+    },
+    "ui-shared": {
+      "tags": []
+    },
+    "ui-auth": {
+      "tags": []
+    },
+    "ui-features-home": {
+      "tags": []
+    },
+    "ui-services-corporate-accounts": {
+      "tags": []
+    },
+    "ui-core": {
+      "tags": []
+    },
+    "ui-cdk-statement": {
+      "tags": []
+    }
+  }
+}

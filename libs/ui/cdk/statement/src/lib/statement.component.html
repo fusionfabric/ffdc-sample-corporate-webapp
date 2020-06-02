@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-title>
+        <h5 class="uxg-h5">Transactions</h5>
+    </mat-card-title>
+    <uxg-table [data]="transactions" [columns]="columns" [columnsToDisplay]="columnsToDisplay"></uxg-table>
+
+    <ng-template #tableCellAmount let-element="element" let-column="column">
+        <div [ngClass]="{'credit': element.transactionType === 'CREDIT'}">
+            {{element.transactionType === 'CREDIT' ? '+' : '-'}} {{ element.amount | currency: element.currency  }}
+        </div>
+    </ng-template>
+
+    <ng-template #tableCellDate let-element="element" let-column="column">
+        {{element[column.name] | date}}
+    </ng-template>
+</mat-card>

@@ -1,0 +1,40 @@
+<header>
+    <h2 class="uxg-h2">
+        Your accounts
+        <div class="paginator">
+            <button mat-icon-button (click)="previousPage()" [disabled]="currentPage === 0">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === maxPage">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+    </h2>
+
+    <ng-container *ngIf="(accounts$ | async) as accounts; else loading">
+        <div class="accounts-list">
+            <uxg-account-card *ngFor="let account of accounts.items" [balance]="account.availableBalance"
+                [number]="account.details.number" [name]="account.details.bankShortName" [currency]="account.currency">
+            </uxg-account-card>
+        </div>
+    </ng-container>
+
+    <ng-template #loading>
+        <div class="accounts-list">
+            <uxg-account-card-skeleton></uxg-account-card-skeleton>
+            <uxg-account-card-skeleton></uxg-account-card-skeleton>
+            <uxg-account-card-skeleton></uxg-account-card-skeleton>
+            <uxg-account-card-skeleton></uxg-account-card-skeleton>
+        </div>
+    </ng-template>
+
+    <div class="wave" [inlineSVG]="'/assets/wave-bottom.svg'"></div>
+</header>
+
+<ng-container *ngIf="(transactions$ | async) as transactions; else loadingS">
+    <fcbs-statement [transactions]="transactions"></fcbs-statement>
+</ng-container>
+
+<ng-template #loadingS>
+    <fcbs-statement-skeleton></fcbs-statement-skeleton>
+</ng-template>

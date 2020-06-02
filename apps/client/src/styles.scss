@@ -1,0 +1,46 @@
+@import "~@ffdc/uxg-angular-theme/lib/core/core";
+@import "~@ffdc/uxg-angular-theme/lib/core/theming/all-theme";
+@import "~@ffdc/uxg-angular-theme/lib/core/typography/typography";
+@import "~@ffdc/uxg-angular-theme/theme-variables";
+
+@import "~@ffdc/uxg-angular-components/global-nav/global-nav.theme";
+@import "~@ffdc/uxg-angular-components/skeleton-text/skeleton-text.theme";
+
+@import "../../../libs/ui/features/home/src/lib/home.component.theme";
+
+@include uxg-core();
+
+// Add components typography mixins inside this mixin
+@mixin app-typography($typography) {
+}
+
+// Add components theme mixins inside this mixin
+@mixin app-theme($theme) {
+    @include uxg-material-theme($theme);
+    @include uxg-global-nav-theme($theme);
+    @include uxg-skeleton-text-theme($theme);
+    @include home-theme($theme);
+}
+
+@include app-typography(uxg-typography-config());
+
+@include app-theme($uxg-light-theme);
+
+@media (prefers-color-scheme: dark) {
+    @include app-theme($uxg-dark-theme);
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Overrides
+.uxg-toolbar {
+    z-index: 15;
+    position: relative;
+}
