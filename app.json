@@ -1,0 +1,25 @@
+{
+    "name": "FFDC Sample Corporate Banking Web App",
+    "description": "FFDC Sample Corporate Banking Web App",
+    "repository": "https://github.com/fusionfabric/ffdc-sample-corporate-webapp",
+    "env": {
+        "OIDC_CLIENT_ID": {
+            "description": "Client ID"
+        },
+        "OIDC_CLIENT_SECRET": {
+            "description": "Client Secret"
+        },
+        "OIDC_ORIGIN": {
+            "description": "URL of the deployed application",
+            "value": "https://REPLACE_WITH_APP_NAME.herokuapp.com"
+        },
+        "OIDC_ISSUER": {
+            "description": "Issuer",
+            "value": "https://api.fusionfabric.cloud/login/v1/sandbox"
+        },
+        "FFDC": {
+            "description": "FFDC Tenant",
+            "value": "https://api.fusionfabric.cloud"
+        }
+    }
+}

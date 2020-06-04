@@ -12,6 +12,7 @@
     "build:client": "ng build client",
     "build:server": "ng build server",
     "build:prod": "npm run build:client -- --prod && npm run build:server -- --prod",
+    "heroku-postbuild": "npm run build:prod",
     "dev": "ng build --watch",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
@@ -62,6 +63,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",
     "apollo-server-express": "^2.13.1",
+    "compression": "^1.7.4",
     "core-js": "^2.5.4",
     "express-session": "^1.17.1",
     "graphql": "^15.0.0",
@@ -70,6 +72,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.4",
     "ts-md5": "^1.2.7",
+    "uuid": "^8.1.0",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
