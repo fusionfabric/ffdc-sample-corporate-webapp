@@ -46,6 +46,7 @@
     "@angular/platform-browser": "~9.0.6",
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
+    "@angular/service-worker": "~9.0.6",
     "@ffdc/api_corporate-accounts": "^0.1.1",
     "@ffdc/nestjs-oidc": "^0.5.0",
     "@ffdc/nestjs-proxy": "^0.2.0",
