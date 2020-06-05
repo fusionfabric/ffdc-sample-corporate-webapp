@@ -20,6 +20,11 @@
         "FFDC": {
             "description": "FFDC Tenant",
             "value": "https://api.fusionfabric.cloud"
+        },
+        "FAST_BUILD": {
+            "description": "If defined, it will retrieve the build from last successful Github Action ran, instead of building everything again",
+            "value": "true",
+            "required": false
         }
     }
 }

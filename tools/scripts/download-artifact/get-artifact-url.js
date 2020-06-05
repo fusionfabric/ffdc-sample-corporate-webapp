@@ -1,8 +1,8 @@
 const axios = require('axios');
+const { github } = require('./token');
 const githubAPI = 'https://api.github.com';
-const token = process.env.GITHUB_TOKEN;
 const headers = {
-  authorization: 'Bearer ' + token,
+  authorization: 'Bearer ' + github,
 };
 
 module.exports = async function getArtifactUrl(owner, repo) {

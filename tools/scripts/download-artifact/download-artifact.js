@@ -1,8 +1,8 @@
-const { createWriteStream } = require('fs');
 const axios = require('axios');
-const token = process.env.GITHUB_TOKEN;
+const { createWriteStream } = require('fs');
+const { github } = require('./token');
 const headers = {
-  authorization: 'Bearer ' + token,
+  authorization: 'Bearer ' + github,
 };
 
 module.exports = async function (url, path) {
