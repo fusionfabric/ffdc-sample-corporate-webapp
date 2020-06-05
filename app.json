@@ -20,10 +20,6 @@
         "FFDC": {
             "description": "FFDC Tenant",
             "value": "https://api.fusionfabric.cloud"
-        },
-        "GITHUB_TOKEN": {
-            "description": "Github token (only needs public repo access)",
-            "value": "11fd10f72a476aef1e7310b7077ed90badf40065"
         }
     }
 }

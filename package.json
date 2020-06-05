@@ -12,7 +12,7 @@
     "build:client": "ng build client",
     "build:server": "ng build server",
     "build:prod": "npm run build:client -- --prod && npm run build:server -- --prod",
-    "heroku-postbuild": "node tools/scripts/download-artifact",
+    "heroku-postbuild": "npm run build:prod",
     "dev": "ng build --watch",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
