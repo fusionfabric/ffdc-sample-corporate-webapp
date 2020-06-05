@@ -26,9 +26,7 @@
               "apps/client/src/assets",
               "apps/client/src/manifest.webmanifest"
             ],
-            "styles": [
-              "apps/client/src/styles.scss"
-            ],
+            "styles": ["apps/client/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -89,10 +87,7 @@
               "apps/client/tsconfig.app.json",
               "apps/client/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/client/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/client/**"]
           }
         },
         "test": {
@@ -148,10 +143,7 @@
               "apps/server/tsconfig.app.json",
               "apps/server/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/server/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/server/**"]
           }
         },
         "test": {
@@ -177,10 +169,7 @@
               "libs/ui/shared/tsconfig.lib.json",
               "libs/ui/shared/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/shared/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/shared/**"]
           }
         },
         "test": {
@@ -206,10 +195,7 @@
               "libs/ui/auth/tsconfig.lib.json",
               "libs/ui/auth/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/auth/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/auth/**"]
           }
         },
         "test": {
@@ -235,10 +221,7 @@
               "libs/ui/features/home/tsconfig.lib.json",
               "libs/ui/features/home/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/features/home/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/features/home/**"]
           }
         },
         "test": {
@@ -293,10 +276,7 @@
               "libs/ui/core/tsconfig.lib.json",
               "libs/ui/core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/core/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/core/**"]
           }
         },
         "test": {
@@ -322,10 +302,7 @@
               "libs/ui/cdk/statement/tsconfig.lib.json",
               "libs/ui/cdk/statement/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/cdk/statement/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/cdk/statement/**"]
           }
         },
         "test": {
@@ -335,6 +312,26 @@
             "tsConfig": "libs/ui/cdk/statement/tsconfig.spec.json",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "ui-features-login": {
+      "projectType": "library",
+      "root": "libs/ui/features/login",
+      "sourceRoot": "libs/ui/features/login/src",
+      "prefix": "ffdc-corporate-banking-sample",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/ui/features/login/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**", "!libs/ui/features/login/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }

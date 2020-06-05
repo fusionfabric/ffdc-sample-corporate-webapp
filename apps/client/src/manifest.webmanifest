@@ -1,8 +1,8 @@
 {
-  "name": "client",
-  "short_name": "client",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Account Services",
+  "short_name": "Account Services",
+  "theme_color": "#060546",
+  "background_color": "#1f1f22",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

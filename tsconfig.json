@@ -29,6 +29,9 @@
       "@ffdc-corporate-banking-sample/ui/core": ["libs/ui/core/src/index.ts"],
       "@ffdc-corporate-banking-sample/ui/cdk/statement": [
         "libs/ui/cdk/statement/src/index.ts"
+      ],
+      "@ffdc-corporate-banking-sample/ui/features/login": [
+        "libs/ui/features/login/src/index.ts"
       ]
     }
   },
