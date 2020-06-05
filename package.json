@@ -12,7 +12,7 @@
     "build:client": "ng build client",
     "build:server": "ng build server",
     "build:prod": "npm run build:client -- --prod && npm run build:server -- --prod",
-    "heroku-postbuild": "npm run build:prod",
+    "heroku-postbuild": "node tools/scripts/download-artifact",
     "dev": "ng build --watch",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
@@ -81,14 +81,16 @@
     "@angular/cli": "~9.0.6",
     "@angular/compiler-cli": "~9.0.6",
     "@angular/language-service": "~9.0.6",
-    "@nrwl/cypress": "9.3.0",
+    "@nestjs/schematics": "^6.7.0",
+    "@nestjs/testing": "^6.8.3",
     "@nrwl/jest": "9.3.0",
     "@nrwl/nest": "^9.3.0",
+    "@nrwl/node": "9.3.0",
     "@nrwl/workspace": "9.3.0",
     "@types/jest": "25.1.4",
     "@types/node": "~8.9.4",
+    "adm-zip": "^0.4.14",
     "codelyzer": "~5.0.1",
-    "cypress": "^4.1.0",
     "dotenv": "6.2.0",
     "eslint": "6.8.0",
     "jest": "25.2.3",
@@ -97,9 +99,6 @@
     "ts-jest": "25.2.1",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.7.5",
-    "@nrwl/node": "9.3.0",
-    "@nestjs/schematics": "^6.7.0",
-    "@nestjs/testing": "^6.8.3"
+    "typescript": "~3.7.5"
   }
 }
