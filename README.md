@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://heroku.com/deploy?template=https://github.com/fusionfabric/ffdc-sample-corporate-webapp" target="_blank">
+  <a href="https://bit.ly/3dNw4Ss" target="_blank">
     <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy with Heroku">
   </a>
   <!-- <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Ffusionfabric%2Fffdc-sample-corporate-webapp%2Fmaster%2Fazuredeploy.json" target="_blank">
