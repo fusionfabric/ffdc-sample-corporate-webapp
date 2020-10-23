@@ -7,9 +7,10 @@ import {
   StatementComponent,
   StatementSkeletonComponent,
 } from './statement.component';
+import { AmountPipe } from './amount.pipe';
 
 @NgModule({
-  declarations: [StatementComponent, StatementSkeletonComponent],
+  declarations: [StatementComponent, StatementSkeletonComponent,AmountPipe],
   imports: [CommonModule, SharedModule],
   exports: [StatementComponent, StatementSkeletonComponent],
 })

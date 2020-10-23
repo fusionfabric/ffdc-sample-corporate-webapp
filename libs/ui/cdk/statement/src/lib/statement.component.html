@@ -1,16 +1,65 @@
-<mat-card>
-    <mat-card-title>
-        <h5 class="uxg-h5">Transactions</h5>
-    </mat-card-title>
-    <uxg-table [data]="transactions" [columns]="columns" [columnsToDisplay]="columnsToDisplay"></uxg-table>
-
-    <ng-template #tableCellAmount let-element="element" let-column="column">
-        <div [ngClass]="{'credit': element.transactionType === 'CREDIT'}">
-            {{element.transactionType === 'CREDIT' ? '+' : '-'}} {{ element.amount | currency: element.currency  }}
+<mat-card class="transaction-list-card">
+    <mat-card-header>
+        <div class="transaction-list-header">
+            <mat-icon class="material-icons" color="primary" aria-label="credit card icon">account_balance_wallet
+            </mat-icon>
+            <div class="transaction-list-title">
+                <div class="uxg-h4">All Transactions</div>
+            </div>
         </div>
-    </ng-template>
+    </mat-card-header>
 
-    <ng-template #tableCellDate let-element="element" let-column="column">
-        {{element[column.name] | date}}
-    </ng-template>
+    <mat-card-footer>
+        <div class="footer-content">
+            <div class="transactions-actions">
+                <div class="uxg-subtitle-2">{{transactions.length}} Transactions</div>
+                <div class="transactions-filter">
+                    <mat-icon class="material-icons" color="primary" aria-label="credit card icon">
+                        filter_list
+                    </mat-icon>
+                    <div class="uxg-subtitle-2">filter</div>
+                </div>
+            </div>
+
+            <div *ngFor="let dates of transactionsDate">
+
+                <div class="transaction-date-header">
+                    <mat-icon class="material-icons" color="primary" aria-label="credit card icon">
+                        event
+                    </mat-icon>
+                    <div>
+                        <div class="uxg-subtitle-1 uxg-text-primary">{{dates[0].postingDate}}</div>
+                    </div>
+                </div>
+
+                <div class=" transactions-list">
+                    <ng-container *ngFor="let item of dates">
+                        <div class="transaction-item">
+                            <div class="transactions-summary">
+                                <div class="transactions-summary-left">
+                                    <div class="uxg-icon-category">
+                                        <mat-icon class="material-icons">attach_money</mat-icon>
+                                    </div>
+
+                                    <div class="transactions-summary-info">
+                                        <div class="uxg-subtitle-3">{{item.ref1 || 'No Description'}}</div>
+                                        <div class="uxg-body-3">{{item.transactionType}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="transactions-summary-right">
+                                    <div class="uxg-subtitle-2" [style.color]="getAmountColor(item)">
+                                        {{item.transactionType|amount}}
+                                        {{item.amount  | currency: item.currency}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+
+            </div>
+        </div>
+
+    </mat-card-footer>
 </mat-card>

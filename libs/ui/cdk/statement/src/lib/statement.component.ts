@@ -1,12 +1,11 @@
 import {
   Component,
-  OnInit,
   Input,
-  ViewChild,
-  TemplateRef,
+  OnInit,
 } from '@angular/core';
 import { AccountStatement } from '@ffdc/api_corporate-accounts/interfaces';
-import { UxgColumn, UxgColumnType } from '@ffdc/uxg-angular-components/table';
+import {from} from 'rxjs';
+import { groupBy, mergeMap, reduce, toArray } from 'rxjs/operators'
 
 @Component({
   selector: 'fcbs-statement',
@@ -16,34 +15,31 @@ import { UxgColumn, UxgColumnType } from '@ffdc/uxg-angular-components/table';
 export class StatementComponent implements OnInit {
   @Input() transactions: AccountStatement[];
 
-  @ViewChild('tableCellAmount', { static: true }) tableCellAmount: TemplateRef<
-    any
-  >;
-  @ViewChild('tableCellDate', { static: true }) tableCelldate: TemplateRef<any>;
-
-  columns: UxgColumn[];
-
-  columnsToDisplay = ['amount', 'postingDate'];
-
+  transactionsDate:any[];
   constructor() {}
 
   ngOnInit(): void {
-    this.columns = [
-      {
-        name: 'amount',
-        type: UxgColumnType.cellTemplate,
-        cellTemplate: this.tableCellAmount,
-        displayName: 'Amount',
-        align: 'left',
-      },
-      {
-        name: 'postingDate',
-        type: UxgColumnType.cellTemplate,
-        cellTemplate: this.tableCelldate,
-        displayName: 'Posting Date',
-      },
-    ];
+
+    from(this.transactions).pipe(
+      groupBy(item => item.postingDate),
+      mergeMap((group$) => group$.pipe(reduce((acc, cur) => [...acc, cur], []))),
+      toArray()
+   )
+ 
+
+  .subscribe(x => {
+    this.transactionsDate=x;
+    }
+    );
+}
+
+getAmountColor(item) {
+  let color = '';
+  if (item.transactionType === 'CREDIT') {
+    color = 'var(--uxg-grass-100)';
   }
+  return color;
+}
 }
 
 // Skeleton

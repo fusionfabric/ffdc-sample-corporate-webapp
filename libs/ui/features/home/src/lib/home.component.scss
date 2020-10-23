@@ -1,14 +1,17 @@
 @import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
+@import "./home.component.theme";
 
 $margin: $uxg-spacing-4 + $uxg-spacing-2; // 32px;
 
 header {
-    background: linear-gradient(to right bottom, #0b0c3e 0, #1b1d5d 35%, #493696 85%, #694ed6);
+    background-image: url(/assets/wave-top.svg);
+    background-size: cover;
     margin: -$margin (-$margin) 0;
     padding: $margin;
     position: relative;
     height: 230px;
-
+    width: 100%;
+    
     h2 {
         display: flex;
         justify-content: space-between;

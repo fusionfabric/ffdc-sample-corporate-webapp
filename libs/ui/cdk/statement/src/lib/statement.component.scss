@@ -1,23 +1,139 @@
 @import "~@ffdc/uxg-angular-theme/lib/core/theming/palette";
 @import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
 
-$green: map-get($uxg-grass, 100);
+:host {
+  width: 70%;
+  display: block;
+  padding-top: 32px;
+}
+  .transaction-list-card {
+    
+    --uxg-grass-100: #{map-get($uxg-grass, 100)};
 
-.app-statement-skeleton {
-    uxg-skeleton-text {
-        margin: 10px 0;
-        padding: 10px 0;
+    border-radius: $uxg-spacing-2 $uxg-spacing-2 $uxg-spacing-2 $uxg-spacing-2;
+
+    .mat-card-header {
+      display: block;
+      margin-left: uxg-spacing-0;
+
+
+      .transaction-list-header {
+        display: flex;
+        padding: $uxg-spacing-0 $uxg-spacing-0 $uxg-spacing-3 $uxg-spacing-2;
+        
+
+        mat-icon {
+          margin-top:$uxg-spacing-1;
+        }
+
+        .transaction-list-title {
+          display: flex;
+          padding-left: $uxg-spacing-3;
+          flex-direction: column;
+
+          .uxg-body-2 {
+            opacity: 0.65;
+          }
+        }
+      }
     }
-}
 
-.credit {
-    color: $green;
-}
+    .mat-card-footer {
 
-uxg-table {
-    margin: -$uxg-spacing-3;
-    margin-bottom: -$uxg-spacing-3 !important;
-    margin-top: 0;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
+      .footer-content {
+        border-radius: $uxg-spacing-0 $uxg-spacing-0 $uxg-spacing-2 $uxg-spacing-2;
+
+        .transactions-actions {
+          margin: $uxg-spacing-0 $uxg-spacing-4 $uxg-spacing-2 $uxg-spacing-4;
+          padding-top: $uxg-spacing-4;
+          margin-bottom: 16px;
+          padding-left: 8px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+  
+
+          .uxg-subtitle-2 {
+          opacity: 0.65;
+       
+          }
+
+          .transactions-filter{
+            display: flex;
+            flex-direction: row;
+            padding-right: 16px;
+           
+            .mat-icon {
+              margin-right: 8px;
+            }
+
+  
+          }
+        }
+
+        .transaction-date-header{
+          display:flex;
+          padding-left: 16px;
+          padding-right: 16px;
+          margin-right: 32px;
+          margin-left: 32px;
+          width: -webkit-fill-available;
+          height: 32px;
+          align-items: center;
+          border-radius: $uxg-spacing-1;
+          .uxg-subtitle-1{
+           margin-left:16px;
+          }
+        }
+
+        .transactions-divider {
+          border-top-width: 2px;
+          border-radius: $uxg-spacing-4;
+          margin: $uxg-spacing-0 $uxg-spacing-4 $uxg-spacing-0 $uxg-spacing-4;
+          width: -webkit-fill-available;
+        }
+
+        .transactions-list {
+          margin: $uxg-spacing-0 $uxg-spacing-4 $uxg-spacing-0 $uxg-spacing-5;
+          padding: $uxg-spacing-4 $uxg-spacing-0 $uxg-spacing-2;
+
+          .transaction-item {
+            margin-bottom: $uxg-spacing-3;
+
+            .transactions-summary {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+
+              .transactions-summary-left {
+                display: flex;
+                flex-direction: row;
+
+                .uxg-icon-category {
+                  width: 32px;
+                  height: 32px;
+                }
+
+                .transactions-summary-info {
+                  display: flex;
+                  flex-direction: column;
+                  margin-left: $uxg-spacing-3;
+
+                  .uxg-body-3 {
+                    opacity: 0.65;
+                  }
+                }
+              }
+              
+              .transactions-summary-right {
+                display: flex;
+                flex-direction: row-reverse;
+                margin-right: $uxg-spacing-3;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
