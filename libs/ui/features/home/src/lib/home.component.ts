@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   getAccounts() {
     // this.accounts$ = this.corpAccounts.getBalancesByAccountType();
-
+ 
     this.accounts$ = this.corpAccountsGQL.getAccounts(
       AccountType.CURRENT,
       'USD',
@@ -40,12 +40,12 @@ export class HomeComponent implements OnInit {
       this.currentPage
     );
 
-    this.accounts$.subscribe((accounts) => {
-      this.maxPage = accounts._meta.pageCount;
-      this.transactions$.next(
-        [].concat(...accounts.items.map((account) => account.statement.items))
-      );
-    });
+  this.accounts$.subscribe((accounts) => {
+    this.maxPage = accounts._meta.itemCount-1;
+    this.transactions$.next(
+      [].concat(...accounts.items.map((account) => account.statement.items))
+    );
+  });
   }
 
   previousPage() {
