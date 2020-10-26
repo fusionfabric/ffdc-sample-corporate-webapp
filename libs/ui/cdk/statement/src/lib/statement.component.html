@@ -11,9 +11,9 @@
 
     <mat-card-footer>
         <div class="footer-content">
-            <div class="transactions-actions">
-                <div class="uxg-subtitle-2">{{transactions.length}} Transactions</div>
-                <div class="transactions-filter">
+            <div class="transaction-actions">
+                <div class="uxg-subtitle-2"> {{transactions.length}} Transactions</div>
+                <div class="transaction-filter">
                     <mat-icon class="material-icons" color="primary" aria-label="credit card icon">
                         filter_list
                     </mat-icon>
@@ -21,36 +21,36 @@
                 </div>
             </div>
 
-            <div *ngFor="let dates of transactionsDate">
+            <div *ngFor="let transactions of transactionsByDate">
 
                 <div class="transaction-date-header">
                     <mat-icon class="material-icons" color="primary" aria-label="credit card icon">
                         event
                     </mat-icon>
                     <div>
-                        <div class="uxg-subtitle-1 uxg-text-primary">{{dates[0].postingDate}}</div>
+                        <div class="uxg-subtitle-1 uxg-text-primary">{{transactions[0].postingDate}}</div>
                     </div>
                 </div>
 
-                <div class=" transactions-list">
-                    <ng-container *ngFor="let item of dates">
+                <div class="transaction-list">
+                    <ng-container *ngFor="let transaction of transactions">
                         <div class="transaction-item">
-                            <div class="transactions-summary">
-                                <div class="transactions-summary-left">
+                            <div class="transaction-summary">
+                                <div class="transaction-summary-left">
                                     <div class="uxg-icon-category">
                                         <mat-icon class="material-icons">attach_money</mat-icon>
                                     </div>
 
-                                    <div class="transactions-summary-info">
-                                        <div class="uxg-subtitle-3">{{item.ref1 || 'No Description'}}</div>
-                                        <div class="uxg-body-3">{{item.transactionType}}</div>
+                                    <div class="transaction-summary-info">
+                                        <div class="uxg-subtitle-3">{{transaction.ref1 || 'No Description'}}</div>
+                                        <div class="uxg-body-3">{{transaction.transactionType}}</div>
                                     </div>
                                 </div>
 
-                                <div class="transactions-summary-right">
-                                    <div class="uxg-subtitle-2" [style.color]="getAmountColor(item)">
-                                        {{item.transactionType|amount}}
-                                        {{item.amount  | currency: item.currency}}
+                                <div class="transaction-summary-right">
+                                    <div class="uxg-subtitle-2" [style.color]="getAmountColor(transaction)">
+                                        {{transaction.transactionType|amount}}
+                                        {{transaction.amount  | currency: transaction.currency}}
                                     </div>
                                 </div>
                             </div>

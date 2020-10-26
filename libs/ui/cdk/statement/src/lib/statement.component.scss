@@ -2,7 +2,7 @@
 @import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
 
 :host {
-  width: 70%;
+  width: 698px;
   display: block;
   padding-top: 32px;
 }
@@ -19,7 +19,7 @@
 
       .transaction-list-header {
         display: flex;
-        padding: $uxg-spacing-0 $uxg-spacing-0 $uxg-spacing-3 $uxg-spacing-2;
+        padding: $uxg-spacing-3 $uxg-spacing-0 $uxg-spacing-3 $uxg-spacing-2;
         
 
         mat-icon {
@@ -43,7 +43,7 @@
       .footer-content {
         border-radius: $uxg-spacing-0 $uxg-spacing-0 $uxg-spacing-2 $uxg-spacing-2;
 
-        .transactions-actions {
+        .transaction-actions {
           margin: $uxg-spacing-0 $uxg-spacing-4 $uxg-spacing-2 $uxg-spacing-4;
           padding-top: $uxg-spacing-4;
           margin-bottom: 16px;
@@ -58,7 +58,7 @@
        
           }
 
-          .transactions-filter{
+          .transaction-filter{
             display: flex;
             flex-direction: row;
             padding-right: 16px;
@@ -86,27 +86,27 @@
           }
         }
 
-        .transactions-divider {
+        .transaction-divider {
           border-top-width: 2px;
           border-radius: $uxg-spacing-4;
           margin: $uxg-spacing-0 $uxg-spacing-4 $uxg-spacing-0 $uxg-spacing-4;
           width: -webkit-fill-available;
         }
 
-        .transactions-list {
+        .transaction-list {
           margin: $uxg-spacing-0 $uxg-spacing-4 $uxg-spacing-0 $uxg-spacing-5;
           padding: $uxg-spacing-4 $uxg-spacing-0 $uxg-spacing-2;
 
           .transaction-item {
             margin-bottom: $uxg-spacing-3;
 
-            .transactions-summary {
+            .transaction-summary {
               display: flex;
               flex-direction: row;
               justify-content: space-between;
               align-items: center;
 
-              .transactions-summary-left {
+              .transaction-summary-left {
                 display: flex;
                 flex-direction: row;
 
@@ -115,7 +115,7 @@
                   height: 32px;
                 }
 
-                .transactions-summary-info {
+                .transaction-summary-info {
                   display: flex;
                   flex-direction: column;
                   margin-left: $uxg-spacing-3;
@@ -126,7 +126,7 @@
                 }
               }
               
-              .transactions-summary-right {
+              .transaction-summary-right {
                 display: flex;
                 flex-direction: row-reverse;
                 margin-right: $uxg-spacing-3;
