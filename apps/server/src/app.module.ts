@@ -11,9 +11,11 @@ import { CorporateAccountsModule } from '@ffdc/api_corporate-accounts';
 import { GqlConfigService } from './configs/graphql-config.service';
 import { OidcConfigService } from './configs/oidc-config.service';
 import { ServiceStaticConfigService } from './configs/serve-startic-config.service';
+import { CurrencyModule } from './currency-coversion-api/currency.module';
 
 @Module({
   imports: [
+    CurrencyModule,
     ConfigModule.forRoot({
       isGlobal: true,
       ignoreEnvFile: process.env.NODE_ENV === 'production',
