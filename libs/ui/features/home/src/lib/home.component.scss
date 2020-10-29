@@ -1,70 +1,76 @@
-@import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
-@import "./home.component.theme";
+@import '~@ffdc/uxg-angular-theme/lib/core/style/spacing';
+@import './home.component.theme';
 
 $margin: $uxg-spacing-4 + $uxg-spacing-2; // 32px;
 
 header {
-    background-image: url(/assets/wave-top.svg);
-    background-size: cover;
-    margin: -$margin (-$margin) 0;
-    padding: $margin;
-    position: relative;
-    height: 230px;
-    width: 100%;
-    
-    h2 {
-        display: flex;
-        justify-content: space-between;
-    }
+  background-image: url(/assets/wave-top.svg);
+  background-size: cover;
+  margin: -$margin (-$margin) 0;
+  padding: $margin;
+  position: relative;
+  height: 230px;
+  width: 100%;
 
-    .paginator {
-        display: flex;
-        align-self: flex-end;
-    }
+  h2 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .paginator {
+    display: flex;
+    align-self: flex-end;
+  }
 }
 
 .accounts-list {
-    position: relative;
-    z-index: 10;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: $uxg-spacing-3;
-    margin-top: $uxg-spacing-4;
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: $uxg-spacing-3;
+  margin-top: $uxg-spacing-4;
 }
 
 .wave {
-    margin: 0 (-$margin) -5px;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    z-index: 0;
+  margin: 0 (-$margin) -5px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
-    header {
-        margin-bottom: 420px;
-    }
+  header {
+    margin-bottom: 420px;
+  }
 
-    .accounts-list {
-        grid-template-columns: 1fr;
-    }
+  .accounts-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
-    header {
-        margin-bottom: 100px;
-    }
+  header {
+    margin-bottom: 100px;
+  }
 
-    .accounts-list {
-        grid-template-columns: 1fr 1fr;
-    }
+  .accounts-list {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-    .accounts-list {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+  .accounts-list {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }

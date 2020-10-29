@@ -1,0 +1,58 @@
+:host {
+  margin-left: 48px;
+  margin-top: 32px;
+  width: 498px;
+}
+.currency-card {
+  ::ng-deep .mat-card-header-text {
+    margin: 0px;
+  }
+  .mat-card-header {
+    padding-top: 16px;
+    padding-left: 8px;
+    .currency-convertor-header {
+        display: flex;
+        .currency-convertor-title {
+          margin-left: 24px;
+        }
+        .mat-icon {
+          font-size: 32px;
+        }
+      }
+  }
+
+
+  .mat-card-content{
+      .mat-tab-group{
+        padding: 24px;
+      }
+   
+      .example-small-box{
+        padding-top: 32px;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 16px;
+        .from-input{
+            display:flex;
+            .mat-icon {
+                margin-right:16px
+            }
+        }
+     
+      }
+
+      .convert-button {
+        width: -webkit-fill-available;
+      }
+
+      .amount{
+        font: 300 28px/48px Roboto, roboto, "Helvetica Neue", sans-serif;
+        letter-spacing: normal;
+    }
+}
+
+.mat-card-actions {
+    justify-content: center;
+}
+  }
+

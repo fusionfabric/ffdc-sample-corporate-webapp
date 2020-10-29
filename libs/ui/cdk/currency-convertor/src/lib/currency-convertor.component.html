@@ -1,0 +1,73 @@
+<mat-card class="currency-card">
+    <mat-card-header>
+        <div class="currency-convertor-header">
+            <mat-icon class="material-icons" color="primary" aria-label="credit card icon">compare_arrows
+            </mat-icon>
+            <div class="currency-convertor-title">
+                <div class="uxg-h4">Currency Convertor</div>
+            </div>
+        </div>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Convert">
+                <div class="example-small-box mat-elevation-z4">
+
+                    <mat-form-field class="example-full-width">
+                        <input class="amount" type="text" matInput [(value)]="amountInput"
+                            (change)="onChangeEvent($event.target.value)">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <div class="from-input">
+                            <mat-icon class="material-icons" color="primary" aria-label="credit card icon">
+                                compare_arrows
+                            </mat-icon>
+                            <mat-select [formControl]="fromCurrencyControl" [(ngModel)]="selectedFromCurrency"
+                                (selectionChange)="changeFromCurrencyBase(selectedFromCurrency)">
+                                <mat-option [value]="base">
+                                    {{base}}
+                                </mat-option>
+
+                                <mat-option *ngFor="let currency of fromCurrencyObject" [value]="currency">
+                                    {{currency}}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <div class="from-input">
+                            <mat-icon class="material-icons" color="primary" aria-label="credit card icon">
+                                compare_arrows
+                            </mat-icon>
+                            <mat-select [formControl]="toCurrencyControl" [(ngModel)]="selectedToCurrency"
+                                (selectionChange)="changeToCurrency(selectedToCurrency)">
+
+                                <mat-option *ngFor="let currency of toCurrencyObject" [value]="currency">
+                                    {{currency}}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                    </mat-form-field>
+                </div>
+                <button class="convert-button" mat-flat-button color="primary" large
+                    (click)="convertAmount(selectedFromCurrency,selectedToCurrency,amountInput)">
+                    Convert
+                </button>
+            </mat-tab>
+            <mat-tab label="Exchange rate">
+                <div class="example-large-box mat-elevation-z4">
+
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <div class="uxg-h4">
+            {{convertedAmount | number}} {{selectedToCurrency}}
+        </div>
+    </mat-card-actions>
+</mat-card>

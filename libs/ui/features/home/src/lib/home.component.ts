@@ -16,9 +16,12 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
+
 export class HomeComponent implements OnInit {
   accounts$: Observable<AccountwBalanceRes>;
   transactions$ = new Subject<AccountStatement[]>();
+  fromCurrency$:any
+  toCurrency$:any
   currentPage = 0;
   maxPage = 0;
 
@@ -35,8 +38,8 @@ export class HomeComponent implements OnInit {
   }
 
   fetch() {
-    this.http.get<any[]>('/rates').subscribe((t) => console.log(t));
-    this.http.get<any[]>('/convert?fromCurrency=EUR&toCurrency=USD&amount=1').subscribe((t) => console.log(t));
+    this.fromCurrency$=this.http.get<any[]>('/rateBase?base=EUR');
+    this.toCurrency$=this.http.get<any[]>('/rateBase?base=USD');
   }
 
   getAccounts() {

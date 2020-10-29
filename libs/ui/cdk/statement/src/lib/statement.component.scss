@@ -2,7 +2,7 @@
 @import '~@ffdc/uxg-angular-theme/lib/core/style/spacing';
 
 :host {
-  width: 698px;
+  width: 798px;
   display: block;
   padding-top: $uxg-spacing-3 * 2;
 }
@@ -94,6 +94,10 @@
               .transaction-summary-left {
                 display: flex;
                 flex-direction: row;
+                .uxg-body-2 {
+                  opacity: 0.65;
+                }
+                
 
                 .uxg-icon-category {
                   width: $uxg-spacing-3 * 2;

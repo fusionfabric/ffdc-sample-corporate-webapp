@@ -5,9 +5,10 @@ import { CurrencyService } from './currency.service';
 export class CurrencyController {
   constructor(private readonly currencyService: CurrencyService) { }
 
-  @Get('/rates')
-  fxRates() {
-    return this.currencyService.getFxRates();
+
+  @Get('/rateBase')
+  rateBase(@Query() params) {
+    return this.currencyService.rateBase(params.base);
   }
 
   @Get('/convert')

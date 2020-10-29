@@ -40,6 +40,23 @@ export class CurrencyService {
         map(response => response.data))
   }
 
+  rateBase(base:string) {
+
+    const FFDC = this.configService.get('FFDC');
+
+    return this.fetchApi(this.configService.get("OIDC_TOKEN_URL"),
+      this.configService.get("OIDC_CLIENT_ID_B2B"), this.configService.get("OIDC_CLIENT_SECRET_B2B"))
+      .pipe
+      (flatMap(token =>
+        this.httpService.get(
+          `${FFDC}/fxrate/v1/latest?base=${base}`,
+          { headers: { 'Authorization': `Bearer ${token}` } })
+
+      )
+      ).pipe(
+        map(response => response.data))
+
+  }
 
   fetchApi(url, client_id, client_secret): Observable<any> {
     const data = "grant_type=client_credentials&client_id=" + client_id + "&client_secret=" + client_secret;
