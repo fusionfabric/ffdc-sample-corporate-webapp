@@ -2,7 +2,6 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { setupSession, getTokenStore, TokenGuard } from '@ffdc/nestjs-oidc';
 import { ConfigService } from '@nestjs/config';
-import { setupStatic } from './setup-static';
 import * as compression from 'compression';
 
 async function bootstrap() {

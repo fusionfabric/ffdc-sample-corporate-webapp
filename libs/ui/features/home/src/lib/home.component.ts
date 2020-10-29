@@ -9,6 +9,7 @@ import {
   AccountwBalanceRes,
   AccountStatement,
 } from '@ffdc/api_corporate-accounts/interfaces';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -23,11 +24,19 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private corpAccounts: CorporateAccountsService,
-    private corpAccountsGQL: CorporateAccountsGQLService
-  ) {}
+    private corpAccountsGQL: CorporateAccountsGQLService,
+    private http: HttpClient
+  ) {
+    this.fetch()
+  }
 
   ngOnInit() {
     this.getAccounts();
+  }
+
+  fetch() {
+    this.http.get<any[]>('/rates').subscribe((t) => console.log(t));
+    this.http.get<any[]>('/convert?fromCurrency=EUR&toCurrency=USD&amount=1').subscribe((t) => console.log(t));
   }
 
   getAccounts() {
