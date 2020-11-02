@@ -1,10 +1,14 @@
-import { Controller, Get, UseGuards, Request, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { CurrencyService } from './currency.service';
 
 @Controller()
 export class CurrencyController {
-  constructor(private readonly currencyService: CurrencyService) { }
-
+  constructor(private readonly currencyService: CurrencyService) {}
 
   @Get('/rateBase')
   rateBase(@Query() params) {
@@ -13,6 +17,15 @@ export class CurrencyController {
 
   @Get('/convert')
   convertAmount(@Query() params) {
-    return this.currencyService.convertAmount(params.fromCurrency, params.toCurrency, params.amount);
+    return this.currencyService.convertAmount(
+      params.fromCurrency,
+      params.toCurrency,
+      params.amount
+    );
+  }
+
+  @Get('/exchangeRates/:date')
+  pastExchangeRates(@Param('date') date) {
+    return this.currencyService.pastExchangeRates(date);
   }
 }

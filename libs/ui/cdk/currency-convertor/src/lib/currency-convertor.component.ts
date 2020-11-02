@@ -5,7 +5,7 @@ import {
   NgZone,
   OnInit,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,88 +15,82 @@ import { Observable } from 'rxjs';
 })
 export class CurrencyConvertor implements OnInit {
 
-selectedFromCurrency = "EUR";
-selectedToCurrency = "USD";
-
-  fromCurrencyObject: any
-  toCurrencyObject: any
-  base: string
-
-  fromCurrency$: Observable<any>
-  toCurrency$: Observable<any>
-
-  private _fromCurrency: any
-  private _toCurrency: any
-
+  selectedFromCurrency = "EUR";
+  selectedToCurrency = "USD";
   amountInput = "2000";
-  amount_1: ''
+
+  currencyRatesObject: any;
+  private _currencyRates: any
+
+  currencyRates$: Observable<any>
+
   convertedAmount: string;
-  _timeout: any = null;
+  convertedCurrency: string;
+
   fromCurrencyControl = new FormControl();
   toCurrencyControl = new FormControl();
 
   @Input()
-  public get fromCurrency(): any {
-    return this._fromCurrency
+  public get currencyRates(): any {
+    return this._currencyRates
   }
 
-  public set fromCurrency(value: any) {
-    this._fromCurrency = value;
-  }
-
-
-  @Input()
-  public get toCurrency(): any {
-    return this._toCurrency
-  }
-
-  public set toCurrency(value: any) {
-    this._toCurrency = value;
+  public set currencyRates(value: any) {
+    this._currencyRates = value;
+    this.currencyRatesObject=Object.keys(this._currencyRates['rates']);
   }
 
   constructor(
-    private http: HttpClient, public lc: NgZone
+    private http: HttpClient
   ) {
 
   }
 
   ngOnInit() {
-  
-    console.log(this.fromCurrency);
-    this.fromCurrencyObject = Object.keys(this.fromCurrency['rates']);
- 
-    this.base = this.fromCurrency['base'];
-    this.toCurrencyObject = Object.keys(this.toCurrency['rates']);
+    this.currencyRatesObject = Object.keys(this.currencyRates['rates']);
+    this.selectedFromCurrency = this.currencyRates['base'];
     this.convertAmount(this.selectedFromCurrency, this.selectedToCurrency, this.amountInput);
   }
 
+  changeCurrencyBase(base: string) {
+    return this.http.get<any>(`/rateBase?base=${base}`);
+  }
+
   changeFromCurrencyBase(base: string) {
-    this.fromCurrency$ = this.http.get<any>(`/rateBase?base=${base}`);
-    this.fromCurrency$.subscribe(x => {
-      this.fromCurrency = x;
-      //this.convertAmount(this.fromCurrency.base, this.selectedToCurrency, this.amountInput);
+    this.currencyRates$ = this.changeCurrencyBase(base)
+    this.currencyRates$.subscribe(currencyR => {
+      this.currencyRates = currencyR;
     })
   }
 
   changeToCurrency(base: string) {
     this.selectedToCurrency = base;
-   // this.convertAmount(this.selectedFromCurrency, this.selectedToCurrency, this.amountInput);
   }
-
 
   convertAmount(fromCurrency: string, toCurrency: string, amount: string) {
-    if(this.amountInput) 
-    this.http.get<any>(`/convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`).subscribe
-    (x => {
-      this.convertedAmount = x.result;
-    });
+    if (this.amountInput)
+      this.http.get<any>(`/convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`)
+        .subscribe(conversion => {
+          this.convertedAmount = conversion.result;
+          this.convertedCurrency = toCurrency;
+        });
   }
-  onChangeEvent(event:any){
-    console.log(event);
-    this.amountInput=event;
+
+  onChangeEvent(event: any) {
+    this.amountInput = event;
   }
-  
+
+  reverseCurrencies() {
+    this.currencyRates$ = this.changeCurrencyBase(this.selectedToCurrency);
+    this.currencyRates$.subscribe(currencyR => {
+      this.currencyRates = currencyR;
+      const tempCurrency = this.selectedFromCurrency;
+      this.selectedFromCurrency = this.currencyRates['base'];
+      this.selectedToCurrency = tempCurrency;
+    })
+  }
 }
+
 
 // Skeleton
 

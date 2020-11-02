@@ -40,13 +40,10 @@
         <fcbs-statement-skeleton></fcbs-statement-skeleton>
     </ng-template>
 
-    <ng-container *ngIf="(fromCurrency$ | async) as fromCurrency;else loadingCurrency">
-        <ng-container *ngIf="(toCurrency$ | async) as toCurrency;else loadingCurrency">
-            <fcbs-currency-convertor [fromCurrency]="fromCurrency" [toCurrency]="toCurrency">
-            </fcbs-currency-convertor>
-        </ng-container>
+    <ng-container *ngIf="(currencyRates$ | async) as currencyRates;else loadingCurrency">
+        <fcbs-currency-convertor [currencyRates]="currencyRates">
+        </fcbs-currency-convertor>
     </ng-container>
-
     <ng-template #loadingCurrency>
         <fcbs-currency-skeleton></fcbs-currency-skeleton>
     </ng-template>
