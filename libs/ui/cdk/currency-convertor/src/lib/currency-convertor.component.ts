@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
+import {Conversion, Rates} from "@ffdc-corporate-banking-sample/data"
 
 @Component({
   selector: 'fcbs-currency-convertor',
@@ -19,25 +20,25 @@ export class CurrencyConvertor implements OnInit {
   selectedToCurrency = "USD";
   amountInput = "2000";
 
-  currencyRatesObject: any;
-  private _currencyRates: any
+  currencyObject: string[];
+  private _currencyRates: Rates
 
-  currencyRates$: Observable<any>
+  currencyRates$: Observable<Rates>
 
-  convertedAmount: string;
+  convertedAmount: number;
   convertedCurrency: string;
 
   fromCurrencyControl = new FormControl();
   toCurrencyControl = new FormControl();
 
   @Input()
-  public get currencyRates(): any {
+  public get currencyRates(): Rates {
     return this._currencyRates
   }
 
-  public set currencyRates(value: any) {
+  public set currencyRates(value: Rates) {
     this._currencyRates = value;
-    this.currencyRatesObject=Object.keys(this._currencyRates['rates']);
+    this.currencyObject=Object.keys(this._currencyRates.rates);
   }
 
   constructor(
@@ -47,13 +48,13 @@ export class CurrencyConvertor implements OnInit {
   }
 
   ngOnInit() {
-    this.currencyRatesObject = Object.keys(this.currencyRates['rates']);
-    this.selectedFromCurrency = this.currencyRates['base'];
+    this.currencyObject = Object.keys(this.currencyRates.rates);
+    this.selectedFromCurrency = this.currencyRates.base;
     this.convertAmount(this.selectedFromCurrency, this.selectedToCurrency, this.amountInput);
   }
 
   changeCurrencyBase(base: string) {
-    return this.http.get<any>(`/rateBase?base=${base}`);
+    return this.http.get<Rates>(`/rateBase?base=${base}`);
   }
 
   changeFromCurrencyBase(base: string) {
@@ -69,7 +70,7 @@ export class CurrencyConvertor implements OnInit {
 
   convertAmount(fromCurrency: string, toCurrency: string, amount: string) {
     if (this.amountInput)
-      this.http.get<any>(`/convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`)
+      this.http.get<Conversion>(`/convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`)
         .subscribe(conversion => {
           this.convertedAmount = conversion.result;
           this.convertedCurrency = toCurrency;
@@ -85,8 +86,9 @@ export class CurrencyConvertor implements OnInit {
     this.currencyRates$.subscribe(currencyR => {
       this.currencyRates = currencyR;
       const tempCurrency = this.selectedFromCurrency;
-      this.selectedFromCurrency = this.currencyRates['base'];
+      this.selectedFromCurrency = this.currencyRates.base;
       this.selectedToCurrency = tempCurrency;
+      this.convertAmount(this.selectedFromCurrency,this.selectedToCurrency,this.amountInput)
     })
   }
 }

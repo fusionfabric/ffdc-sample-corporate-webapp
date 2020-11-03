@@ -35,7 +35,10 @@
       ],
       "@ffdc-corporate-banking-sample/ui/features/login": [
         "libs/ui/features/login/src/index.ts"
-      ]
+      ],
+      "@ffdc-corporate-banking-sample/data": [
+        "libs/data/src/index.ts"
+      ],
     }
   },
   "exclude": ["node_modules", "tmp"]

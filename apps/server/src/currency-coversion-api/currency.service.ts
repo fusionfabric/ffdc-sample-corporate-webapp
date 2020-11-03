@@ -2,6 +2,7 @@ import { HttpService, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Observable } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
+import {Conversion, Rates} from "@ffdc-corporate-banking-sample/data"
 
 @Injectable()
 export class CurrencyService {
@@ -10,7 +11,7 @@ export class CurrencyService {
     private configService: ConfigService
   ) {}
 
-  getFxRates(): Observable<any> {
+  getFxRates(): Observable<Rates> {
     const FFDC = this.configService.get('FFDC');
 
     return this.fetchApi(
@@ -32,7 +33,7 @@ export class CurrencyService {
     fromCurrency: string,
     toCurrency,
     amount: string
-  ): Observable<any> {
+  ): Observable<Conversion> {
     const FFDC = this.configService.get('FFDC');
 
     return this.fetchApi(
@@ -51,7 +52,7 @@ export class CurrencyService {
       .pipe(map((response) => response.data));
   }
 
-  rateBase(base: string) {
+  rateBase(base: string) :Observable<Rates> {
     const FFDC = this.configService.get('FFDC');
 
     return this.fetchApi(

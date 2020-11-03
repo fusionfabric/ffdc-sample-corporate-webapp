@@ -10,6 +10,7 @@ import {
   AccountStatement,
 } from '@ffdc/api_corporate-accounts/interfaces';
 import { HttpClient } from '@angular/common/http';
+import {Rates} from "@ffdc-corporate-banking-sample/data"
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
   accounts$: Observable<AccountwBalanceRes>;
   transactions$ = new Subject<AccountStatement[]>();
-  currencyRates$:any
+  currencyRates$:Observable<Rates>
   currentPage = 0;
   maxPage = 0;
 
@@ -29,15 +30,15 @@ export class HomeComponent implements OnInit {
     private corpAccountsGQL: CorporateAccountsGQLService,
     private http: HttpClient
   ) {
-    this.fetch()
   }
 
   ngOnInit() {
     this.getAccounts();
+    this.getCurrencyRates()
   }
 
-  fetch() {
-    this.currencyRates$=this.http.get<any[]>('/rateBase?base=EUR');
+  getCurrencyRates() {
+    this.currencyRates$=this.http.get<Rates>('/rateBase?base=EUR');
   }
 
   getAccounts() {

@@ -35,7 +35,7 @@
                                     {{ selectedFromCurrency }}
                                 </mat-option>
 
-                                <mat-option *ngFor="let currency of currencyRatesObject" [value]="currency">
+                                <mat-option *ngFor="let currency of currencyObject" [value]="currency">
                                     {{ currency }}
                                 </mat-option>
                             </mat-select>
@@ -52,7 +52,7 @@
                                 <mat-option [value]="selectedToCurrency">
                                     {{ selectedToCurrency }}
                                 </mat-option>
-                                <mat-option *ngFor="let currency of currencyRatesObject" [value]="currency">
+                                <mat-option *ngFor="let currency of currencyObject" [value]="currency">
                                     {{ currency }}
                                 </mat-option>
                             </mat-select>
