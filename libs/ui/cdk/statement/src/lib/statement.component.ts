@@ -15,7 +15,7 @@ import { groupBy, mergeMap, reduce, toArray } from 'rxjs/operators'
 export class StatementComponent implements OnInit {
 
   private _transactions!: AccountStatement[];
-  transactionsByDate: any[];
+  transactionsByDate: AccountStatement[][];
 
 
   @Input()
@@ -31,8 +31,8 @@ export class StatementComponent implements OnInit {
       mergeMap((group$) => group$.pipe(reduce((acc, cur) => [...acc, cur], []))),
       toArray()
     )
-      .subscribe(x => {
-        this.transactionsByDate = x;
+      .subscribe(groupedTransactions => {
+        this.transactionsByDate = groupedTransactions;
       });
   }
 
@@ -41,7 +41,7 @@ export class StatementComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getAmountColor(item) {
+  getAmountColor(item: AccountStatement) {
     let color = '';
     if (item.transactionType === 'CREDIT') {
       color = 'var(--uxg-grass-100)';
