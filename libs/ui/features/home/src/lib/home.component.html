@@ -31,21 +31,23 @@
     <div class="wave" [inlineSVG]="'/assets/wave-bottom.svg'"></div>
 </header>
 
-<div class="content">
-    <ng-container *ngIf="(transactions$ | async) as transactions; else loadingS">
-        <fcbs-statement [transactions]="transactions"></fcbs-statement>
-    </ng-container>
+<div class="content" fxLayout="row wrap" fxLayoutGap="32px grid">
+    <div fxFlex="70%" fxFlex.xs="100%" fxFlex.sm="60%">
+        <ng-container *ngIf="transactions$ | async as transactions; else loadingS">
+            <fcbs-statement [transactions]="transactions"></fcbs-statement>
+        </ng-container>
 
-    <ng-template #loadingS>
-        <fcbs-statement-skeleton></fcbs-statement-skeleton>
-    </ng-template>
-
-    <ng-container *ngIf="(currencyRates$ | async) as currencyRates;else loadingCurrency">
-        <fcbs-currency-convertor [currencyRates]="currencyRates">
-        </fcbs-currency-convertor>
-    </ng-container>
-    <ng-template #loadingCurrency>
-        <fcbs-currency-skeleton></fcbs-currency-skeleton>
-    </ng-template>
-
+        <ng-template #loadingS>
+            <fcbs-statement-skeleton></fcbs-statement-skeleton>
+        </ng-template>
+    </div>
+    <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="40%">
+        <ng-container *ngIf="currencyRates$ | async as currencyRates; else loadingCurrency">
+            <fcbs-currency-convertor [currencyRates]="currencyRates">
+            </fcbs-currency-convertor>
+        </ng-container>
+        <ng-template #loadingCurrency>
+            <fcbs-currency-skeleton></fcbs-currency-skeleton>
+        </ng-template>
+    </div>
 </div>

@@ -10,6 +10,7 @@ import { CurrencyConvertorModule } from '@ffdc-corporate-banking-sample/ui/cdk/c
 
 import { HomeComponent } from './home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     CorporateAccountsModule,
     StatementModule,
     CurrencyConvertorModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    FlexLayoutModule
+    ],
 })
 export class HomeModule {}

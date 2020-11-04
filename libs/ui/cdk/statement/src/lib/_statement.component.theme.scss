@@ -1,4 +1,3 @@
-
 @import '~@angular/material/theming';
 @import '~@ffdc/uxg-angular-theme/lib/core/style/spacing';
 
@@ -12,22 +11,19 @@
   $text-primary: mat-color($primary, default);
 
   .transaction-list-card {
-    
     --uxg-grass-100: #{map-get($uxg-grass, 100)};
 
     background-color: mat-color($primary, default, 0.1);
 
     .transaction-list-menu {
-        color: mat-color($primary, default, 0.5);
-     }
-
+      color: mat-color($primary, default, 0.5);
+    }
 
     .mat-card-footer {
-        background-color: mat-color($background, card);
-    } 
+      background-color: mat-color($background, card);
+    }
 
-    .transaction-filter{
-  
+    .transaction-filter {
       .mat-icon {
         color: mat-color($primary, default, 0.3);
       }
@@ -37,11 +33,8 @@
       }
     }
 
-
-    .transaction-date-header{
-      background:mat-color($primary, default, 0.1);
+    .transaction-date-header {
+      background: mat-color($primary, default, 0.1);
     }
-
   }
-
 }
