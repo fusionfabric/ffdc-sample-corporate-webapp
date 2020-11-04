@@ -8,6 +8,7 @@
 
 @import "../../../libs/ui/features/home/src/lib/home.component.theme";
 @import "../../../libs/ui/cdk/statement/src/lib/statement.component.theme";
+@import "../../../libs/ui/cdk/currency-convertor/src/lib/currency-convertor.component.theme";
 
 @include uxg-core();
 
@@ -22,6 +23,7 @@
     @include uxg-skeleton-text-theme($theme);
     @include home-theme($theme);
     @include statement-theme($theme);
+    @include currency-theme($theme);
 }
 
 @include app-typography(uxg-typography-config());
