@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { OidcModule } from '@ffdc/nestjs-oidc';
 import { ProxyModule } from '@ffdc/nestjs-proxy';
@@ -12,6 +12,7 @@ import { GqlConfigService } from './configs/graphql-config.service';
 import { OidcConfigService } from './configs/oidc-config.service';
 import { ServiceStaticConfigService } from './configs/serve-startic-config.service';
 import { CurrencyModule } from './currency-coversion-api/currency.module';
+import { CorpAccountsConfigService } from './configs/corp-accounts-config.service';
 
 @Module({
   imports: [
@@ -31,7 +32,10 @@ import { CurrencyModule } from './currency-coversion-api/currency.module';
       useClass: ProxyConfigService,
       imports: [ConfigModule],
     }),
-    CorporateAccountsModule,
+    CorporateAccountsModule.forRootAsync({
+      useClass: CorpAccountsConfigService,
+      imports: [ConfigModule],
+    }),
     GraphQLModule.forRootAsync({
       useClass: GqlConfigService,
     }),
