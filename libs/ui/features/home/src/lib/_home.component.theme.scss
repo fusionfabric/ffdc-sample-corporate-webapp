@@ -4,10 +4,9 @@
     $background: mat-color($backgrounds, "background");
     
     header {
-        h1,
-        h2 {
-            color: #fff;
-        }   
+        .account-services-headline {
+            color: mat-color($backgrounds, card);
+          } 
     }
 
     .wave {
