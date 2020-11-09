@@ -1,12 +1,12 @@
 @import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
 @import "./home.component.theme";
 
-$margin: $uxg-spacing-4 + $uxg-spacing-2; // 32px;
+$margin: $uxg-spacing-4+$uxg-spacing-2; // $margin;
 
 header {
   background-image: url(/assets/wave-top.svg);
   background-size: cover;
-  margin: -$margin (-$margin) 0;
+  margin: -$margin (-$margin) $uxg-spacing-0;
   padding: $margin;
   position: relative;
   height: 45%;
@@ -31,20 +31,22 @@ header {
   z-index: 10;
   width: 100%;
   white-space: nowrap;
+  padding-right: $margin * 2;
+  margin-left: -$margin;
 
   uxg-account-card,
   uxg-account-card-skeleton {
     display: inline-grid;
-    padding-right: $margin;
+    margin-left: $margin;
   }
 }
 
 .wave {
-  margin: 0 (-$margin) -5px;
+  margin: $uxg-spacing-0 (-$margin) -5px;
   position: absolute;
   width: 100%;
-  bottom: 0;
-  z-index: 0;
+  bottom: $uxg-spacing-0;
+  z-index: $uxg-spacing-0;
 }
 
 /* Mobile Styles */
@@ -59,7 +61,7 @@ header {
   }
 
   .accounts-list {
-    padding-top: 32px;
+    padding-top: $margin;
   }
 }
 
@@ -95,10 +97,9 @@ header {
   }
 
   .content {
-    padding-top: $margin;
-    padding-right: 32px;
-    padding-left: 32px;
+    padding: $margin $margin * 2 $uxg-spacing-0 $margin;
   }
+
   .accounts-list {
     overflow: hidden;
     padding-top: $margin;

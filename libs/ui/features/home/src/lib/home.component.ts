@@ -5,11 +5,8 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { concat, Observable, Subject, throwError } from 'rxjs';
-import {
-  CorporateAccountsService,
-  CorporateAccountsGQLService,
-} from '@ffdc-corporate-banking-sample/ui/services/corporate-accounts';
+import { Observable, Subject } from 'rxjs';
+import { CorporateAccountsGQLService } from '@ffdc-corporate-banking-sample/ui/services/corporate-accounts';
 import {
   AccountType,
   AccountwBalanceRes,
@@ -34,6 +31,8 @@ export class HomeComponent implements OnInit {
   equivalentCurrency = 'USD';
 
   mobileScreen = false;
+  end = false;
+  start = true;
   currentPage = 0;
   pageCount = 1;
   limit = 7;
@@ -117,13 +116,26 @@ export class HomeComponent implements OnInit {
   }
 
   public scrollRight(): void {
-    this.accountList.nativeElement.scrollTo({
-      left: this.accountList.nativeElement.scrollLeft + 150,
-      behavior: 'smooth',
-    });
+    this.start = false;
+    const scrollWidth =
+      this.accountList.nativeElement.scrollWidth -
+      this.accountList.nativeElement.clientWidth;
+
+    if (scrollWidth === Math.round(this.accountList.nativeElement.scrollLeft)) {
+      this.end = true;
+    } else {
+      this.accountList.nativeElement.scrollTo({
+        left: this.accountList.nativeElement.scrollLeft + 150,
+        behavior: 'smooth',
+      });
+    }
   }
 
   public scrollLeft(): void {
+    this.end = false;
+    if (this.accountList.nativeElement.scrollLeft === 0) {
+      this.start = true;
+    }
     this.accountList.nativeElement.scrollTo({
       left: this.accountList.nativeElement.scrollLeft - 150,
       behavior: 'smooth',
