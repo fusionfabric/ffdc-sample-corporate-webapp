@@ -18,12 +18,6 @@
                     <mat-form-field class="amount-input">
                         <input class="amount-font" type="text" matInput [(value)]="amountInput"
                             (change)="onChangeEvent($event.target.value)" />
-                        <button mat-button>
-                            <mat-icon class="material-icons" color="primary" aria-label="credit card icon"
-                                (click)="reverseCurrencies()">
-                                compare_arrows
-                            </mat-icon>
-                        </button>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill">
@@ -43,6 +37,13 @@
                             </mat-select>
                         </div>
                     </mat-form-field>
+
+                    <button mat-button>
+                        <mat-icon class="material-icons" color="primary" aria-label="credit card icon"
+                            (click)="reverseCurrencies()">
+                            compare_arrows
+                        </mat-icon>
+                    </button>
 
                     <mat-form-field appearance="fill">
                         <div class="from-input">
@@ -72,7 +73,7 @@
 
             <mat-tab label="Exchange rate" clas="exchange-rate-tab">
 
-                <div class="base-field-title uxg-subtitle-2">Select Base Currency</div>
+                <div class="base-field-title uxg-subtitle-2">Select base currency</div>
                 <mat-form-field class="base-field" appearance="fill">
                     <div class="from-input">
                         <mat-select [formControl]="baseCurrencyControl" [(ngModel)]="selectedBaseCurrency"
@@ -90,12 +91,12 @@
                 <div class="table-container">
                     <table mat-table [dataSource]="currencyRates.rates | keyvalue">
                         <ng-container matColumnDef="currency">
-                            <th mat-header-cell *matHeaderCellDef> currency </th>
+                            <th mat-header-cell *matHeaderCellDef> Currency </th>
                             <td mat-cell *matCellDef="let element"> {{element.key}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="rate">
-                            <th mat-header-cell *matHeaderCellDef> rate </th>
+                            <th mat-header-cell *matHeaderCellDef> Rate </th>
                             <td mat-cell *matCellDef="let element"> {{element.value | number}} </td>
                         </ng-container>
 

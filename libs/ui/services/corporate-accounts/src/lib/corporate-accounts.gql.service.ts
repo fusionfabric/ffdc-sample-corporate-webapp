@@ -51,7 +51,9 @@ export class CorporateAccountsGQLService {
                 }
               }
               _meta {
-                itemCount
+                limit,
+                itemCount,
+                pageCount,
               }
             }
           }

@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { concat, Observable, Subject, throwError } from 'rxjs';
 import {
   CorporateAccountsService,
   CorporateAccountsGQLService,
@@ -8,64 +14,102 @@ import {
   AccountType,
   AccountwBalanceRes,
   AccountStatement,
+  AccountwBalance,
 } from '@ffdc/api_corporate-accounts/interfaces';
 import { HttpClient } from '@angular/common/http';
-import {Rates} from "@ffdc-corporate-banking-sample/data"
+import { Rates } from '@ffdc-corporate-banking-sample/data';
+import { of } from 'rxjs';
+import { map, expand, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-
 export class HomeComponent implements OnInit {
-  accounts$: Observable<AccountwBalanceRes>;
+  accounts: AccountwBalance[];
   transactions$ = new Subject<AccountStatement[]>();
-  currencyRates$:Observable<Rates>
-  currentPage = 0;
-  maxPage = 0;
+  currencyRates$: Observable<Rates>;
 
-  constructor(
-    private corpAccounts: CorporateAccountsService,
-    private corpAccountsGQL: CorporateAccountsGQLService,
-    private http: HttpClient
-  ) {
+  mobileScreen = false;
+  currentPage = 0;
+  pageCount = 1;
+  limit = 7;
+
+  @ViewChild('accountList', { read: ElementRef })
+  public accountList: ElementRef<any>;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (window.innerWidth < 415) {
+      this.mobileScreen = true;
+    } else {
+      this.mobileScreen = false;
+    }
   }
 
+  constructor(
+    private corpAccountsGQL: CorporateAccountsGQLService,
+    private http: HttpClient
+  ) {}
+
   ngOnInit() {
-    this.getAccounts();
-    this.getCurrencyRates()
+    if (window.innerWidth < 415) {
+      this.mobileScreen = true;
+    }
+
+    this.getAllAccounts().subscribe((data) => {
+      this.accounts = data;
+      this.transactions$.next(
+        [].concat(...this.accounts.map((account) => account.statement.items))
+      );
+    });
+
+    this.getCurrencyRates();
   }
 
   getCurrencyRates() {
-    this.currencyRates$=this.http.get<Rates>('/rateBase?base=EUR');
+    this.currencyRates$ = this.http.get<Rates>('/rateBase?base=EUR');
   }
 
-  getAccounts() {
-    // this.accounts$ = this.corpAccounts.getBalancesByAccountType();
- 
-    this.accounts$ = this.corpAccountsGQL.getAccounts(
+  getAccounts(limit: number,currentPage: number): Observable<AccountwBalanceRes> {
+    return this.corpAccountsGQL.getAccounts(
       AccountType.CURRENT,
       'USD',
-      4,
-      this.currentPage
+      limit,
+      currentPage
     );
-
-  this.accounts$.subscribe((accounts) => {
-    this.maxPage = accounts._meta.itemCount-1;
-    this.transactions$.next(
-      [].concat(...accounts.items.map((account) => account.statement.items))
-    );
-  });
   }
 
-  previousPage() {
-    this.currentPage--;
-    this.getAccounts();
+  getAllAccounts(): Observable<AccountwBalance[]> {
+    return this.getAccounts(this.limit, this.currentPage).pipe(
+      expand((response: AccountwBalanceRes) => {
+        if (response._meta.pageCount !== this.pageCount) {
+          this.currentPage += response._meta.limit;
+          this.pageCount++;
+          return this.getAccounts(this.limit, this.currentPage);
+        } else {
+          return of();
+        }
+      }),
+      reduce(
+        (acc, element: AccountwBalanceRes) => acc.concat(element.items),
+        []
+      )
+    );
   }
 
-  nextPage() {
-    this.currentPage++;
-    this.getAccounts();
+  public scrollRight(): void {
+    this.accountList.nativeElement.scrollTo({
+      left: this.accountList.nativeElement.scrollLeft + 150,
+      behavior: 'smooth',
+    });
+  }
+
+  public scrollLeft(): void {
+    this.accountList.nativeElement.scrollTo({
+      left: this.accountList.nativeElement.scrollLeft - 150,
+      behavior: 'smooth',
+    });
   }
 }

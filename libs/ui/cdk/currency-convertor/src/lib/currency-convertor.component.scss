@@ -50,9 +50,6 @@ display:block;
           display: flex;
         }
 
-        button.mat-button .mat-icon {
-          font-size: $uxg-spacing-4 !important;
-        }
       }
 
       .from-input {
@@ -61,6 +58,17 @@ display:block;
         .mat-icon {
           margin-right: $uxg-spacing-3;
         }
+      }
+
+      button {
+        width: fit-content;
+        align-self: center;
+      }
+
+      button.mat-button .mat-icon {
+        margin-bottom: $uxg-spacing-4;
+        transform: rotate(90deg);
+        font-size: $uxg-spacing-4 !important;
       }
     }
 
@@ -111,4 +119,14 @@ display:block;
   border-bottom-right-radius: $uxg-spacing-1;
   border-bottom-left-radius: $uxg-spacing-1;
   text-align: center;
+}
+
+
+/* Mobile Styles */
+@media only screen and (max-width: 415px) {
+  .currency-convertor-title{
+    .uxg-h4 {
+      font-size: 16px;
+    }    
+  }
 }

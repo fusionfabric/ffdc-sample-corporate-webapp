@@ -24,12 +24,18 @@ header {
 }
 
 .accounts-list {
+  float: left;
   position: relative;
+  overflow: auto;
   z-index: 10;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: $uxg-spacing-3;
-  margin-top: $uxg-spacing-4;
+  width: 100%;
+  white-space: nowrap;
+
+  uxg-account-card,
+  uxg-account-card-skeleton {
+    display: inline-grid;
+    padding-right: $margin;
+  }
 }
 
 .wave {
@@ -40,32 +46,60 @@ header {
   z-index: 0;
 }
 
-
 /* Mobile Styles */
-@media only screen and (max-width: 400px) {
+@media only screen and (min-width: 377px) and (max-width: 415px) {
   header {
-    margin-bottom: 420px;
+    margin-bottom: $uxg-spacing-4;
+    height: 35%;
+
+    .account-services-headline {
+      font-size: $margin;
+    }
   }
 
   .accounts-list {
-    grid-template-columns: 1fr;
+    padding-top: 32px;
+  }
+}
+
+/* Mobile Styles Small Screen */
+@media only screen and (max-width: 376px) {
+  header {
+    margin-bottom: $uxg-spacing-5;
+    height: 35%;
+
+    .account-services-headline {
+      font-size: $margin;
+    }
   }
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
+@media only screen and (min-width: 500px) and (max-width: 1026px) {
   header {
-    margin-bottom: 100px;
+    margin-bottom: $margin;
+    height: 30%;
   }
 
   .accounts-list {
-    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    padding-top: $margin;
   }
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 961px) {
+@media only screen and (min-width: 1026px) {
+  .header {
+    margin-bottom: $uxg-spacing-5;
+  }
+
+  .content {
+    padding-top: $margin;
+    padding-right: 32px;
+    padding-left: 32px;
+  }
   .accounts-list {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    overflow: hidden;
+    padding-top: $margin;
   }
 }

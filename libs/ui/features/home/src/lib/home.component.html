@@ -1,19 +1,19 @@
 <header>
     <h2 class="uxg-h2 account-services-headline">
         Your accounts
-        <div class="paginator">
-            <button mat-icon-button (click)="previousPage()" [disabled]="currentPage === 0">
+        <div class="paginator" *ngIf="!mobileScreen">
+            <button mat-icon-button (click)="scrollLeft()">
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </button>
-            <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === maxPage">
+            <button mat-icon-button (click)="scrollRight()">
                 <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
         </div>
     </h2>
 
-    <ng-container *ngIf="(accounts$ | async) as accounts; else loading">
-        <div class="accounts-list">
-            <uxg-account-card *ngFor="let account of accounts.items" [balance]="account.availableBalance"
+    <ng-container *ngIf="accounts; else loading">
+        <div #accountList class="accounts-list">
+            <uxg-account-card *ngFor="let account of accounts" [balance]="account.availableBalance"
                 [number]="account.details.number" [name]="account.details.bankShortName" [currency]="account.currency">
             </uxg-account-card>
         </div>
@@ -25,6 +25,9 @@
             <uxg-account-card-skeleton></uxg-account-card-skeleton>
             <uxg-account-card-skeleton></uxg-account-card-skeleton>
             <uxg-account-card-skeleton></uxg-account-card-skeleton>
+            <uxg-account-card-skeleton></uxg-account-card-skeleton>
+            <uxg-account-card-skeleton></uxg-account-card-skeleton>
+            <uxg-account-card-skeleton></uxg-account-card-skeleton>
         </div>
     </ng-template>
 
@@ -32,7 +35,7 @@
 </header>
 
 <div class="content" fxLayout="row wrap" fxLayoutGap="32px grid">
-    <div fxFlex="70%" fxFlex.xs="100%" fxFlex.sm="60%">
+    <div fxFlex="60%" fxFlex.xs="100%" fxFlex.sm="60%">
         <ng-container *ngIf="transactions$ | async as transactions; else loadingS">
             <fcbs-statement [transactions]="transactions"></fcbs-statement>
         </ng-container>
@@ -41,7 +44,7 @@
             <fcbs-statement-skeleton></fcbs-statement-skeleton>
         </ng-template>
     </div>
-    <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="40%">
+    <div fxFlex="40%" fxFlex.xs="100%" fxFlex.sm="40%">
         <ng-container *ngIf="currencyRates$ | async as currencyRates; else loadingCurrency">
             <fcbs-currency-convertor [currencyRates]="currencyRates">
             </fcbs-currency-convertor>
