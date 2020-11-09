@@ -19,7 +19,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Rates } from '@ffdc-corporate-banking-sample/data';
 import { of } from 'rxjs';
-import { map, expand, reduce } from 'rxjs/operators';
+import { expand, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -27,9 +27,11 @@ import { map, expand, reduce } from 'rxjs/operators';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  accounts: AccountwBalance[];
+  accounts$ = new Subject<AccountwBalance[]>();
   transactions$ = new Subject<AccountStatement[]>();
   currencyRates$: Observable<Rates>;
+  globalBalance$ = new Subject<number>();
+  equivalentCurrency = 'USD';
 
   mobileScreen = false;
   currentPage = 0;
@@ -59,23 +61,38 @@ export class HomeComponent implements OnInit {
     }
 
     this.getAllAccounts().subscribe((data) => {
-      this.accounts = data;
+      this.accounts$.next(data);
       this.transactions$.next(
-        [].concat(...this.accounts.map((account) => account.statement.items))
+        [].concat(...data.map((account) => account.statement.items))
       );
     });
 
+    this.accounts$.subscribe((accounts) => {
+      this.globalBalance$.next(this.getGlobalBalance(accounts));
+    });
+
     this.getCurrencyRates();
+  }
+
+  private getGlobalBalance(accounts: AccountwBalance[]): number {
+    return accounts.reduce(
+      (prev, current) =>
+        prev + parseFloat(current.availableBalanceEquivalent.replace(/,/g, '')),
+      0
+    );
   }
 
   getCurrencyRates() {
     this.currencyRates$ = this.http.get<Rates>('/rateBase?base=EUR');
   }
 
-  getAccounts(limit: number,currentPage: number): Observable<AccountwBalanceRes> {
+  getAccounts(
+    limit: number,
+    currentPage: number
+  ): Observable<AccountwBalanceRes> {
     return this.corpAccountsGQL.getAccounts(
       AccountType.CURRENT,
-      'USD',
+      this.equivalentCurrency,
       limit,
       currentPage
     );

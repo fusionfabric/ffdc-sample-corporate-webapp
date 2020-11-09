@@ -1,6 +1,15 @@
 <header>
-    <h2 class="uxg-h2 account-services-headline">
-        Your accounts
+    <div class="account-services-headline">
+        <ng-container *ngIf="globalBalance$ | async as globalBalance; else loadingGlobalBalance">
+            <div class="global-balance">
+                <h3 class="uxg-h3">{{globalBalance | currency:equivalentCurrency}}</h3>
+                <p>Global Balance in {{equivalentCurrency}}</p>
+            </div>
+        </ng-container>
+        <ng-template #loadingGlobalBalance>
+            <uxg-skeleton-text animated style="width: 300px"></uxg-skeleton-text>
+        </ng-template>
+
         <div class="paginator" *ngIf="!mobileScreen">
             <button mat-icon-button (click)="scrollLeft()">
                 <mat-icon>keyboard_arrow_left</mat-icon>
@@ -9,9 +18,9 @@
                 <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
         </div>
-    </h2>
+    </div>
 
-    <ng-container *ngIf="accounts; else loading">
+    <ng-container *ngIf="accounts$ | async as accounts; else loading">
         <div #accountList class="accounts-list">
             <uxg-account-card *ngFor="let account of accounts" [balance]="account.availableBalance"
                 [number]="account.details.number" [name]="account.details.bankShortName" [currency]="account.currency">

@@ -36,6 +36,7 @@ export class CorporateAccountsGQLService {
                 id
                 currency
                 availableBalance
+                availableBalanceEquivalent
                 details {
                   number
                   country
