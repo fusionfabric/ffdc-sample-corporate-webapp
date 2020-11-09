@@ -2,10 +2,10 @@
     <h2 class="uxg-h2 account-services-headline">
         Your accounts
         <div class="paginator" *ngIf="!mobileScreen">
-            <button mat-icon-button (click)="scrollLeft()">
+            <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </button>
-            <button mat-icon-button (click)="scrollRight()">
+            <button mat-icon-button (click)="scrollRight()" [disabled]="end">
                 <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
         </div>

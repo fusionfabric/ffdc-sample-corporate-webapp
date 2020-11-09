@@ -1,25 +1,11 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { concat, Observable, Subject, throwError } from 'rxjs';
-import {
-  CorporateAccountsService,
-  CorporateAccountsGQLService,
-} from '@ffdc-corporate-banking-sample/ui/services/corporate-accounts';
-import {
-  AccountType,
-  AccountwBalanceRes,
-  AccountStatement,
-  AccountwBalance,
-} from '@ffdc/api_corporate-accounts/interfaces';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { CorporateAccountsGQLService } from '@ffdc-corporate-banking-sample/ui/services/corporate-accounts';
+import { AccountType, AccountwBalanceRes, AccountStatement, AccountwBalance } from '@ffdc/api_corporate-accounts/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Rates } from '@ffdc-corporate-banking-sample/data';
 import { of } from 'rxjs';
-import { map, expand, reduce } from 'rxjs/operators';
+import { expand, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +18,8 @@ export class HomeComponent implements OnInit {
   currencyRates$: Observable<Rates>;
 
   mobileScreen = false;
+  end = false;
+  start = true;
   currentPage = 0;
   pageCount = 1;
   limit = 7;
@@ -51,7 +39,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private corpAccountsGQL: CorporateAccountsGQLService,
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -64,7 +52,6 @@ export class HomeComponent implements OnInit {
         [].concat(...this.accounts.map((account) => account.statement.items))
       );
     });
-
     this.getCurrencyRates();
   }
 
@@ -72,7 +59,7 @@ export class HomeComponent implements OnInit {
     this.currencyRates$ = this.http.get<Rates>('/rateBase?base=EUR');
   }
 
-  getAccounts(limit: number,currentPage: number): Observable<AccountwBalanceRes> {
+  getAccounts(limit: number, currentPage: number): Observable<AccountwBalanceRes> {
     return this.corpAccountsGQL.getAccounts(
       AccountType.CURRENT,
       'USD',
@@ -100,13 +87,24 @@ export class HomeComponent implements OnInit {
   }
 
   public scrollRight(): void {
-    this.accountList.nativeElement.scrollTo({
-      left: this.accountList.nativeElement.scrollLeft + 150,
-      behavior: 'smooth',
-    });
+    this.start = false;
+    const scrollWidth = this.accountList.nativeElement.scrollWidth - this.accountList.nativeElement.clientWidth;
+
+    if (scrollWidth === Math.round(this.accountList.nativeElement.scrollLeft)) {
+      this.end = true;
+    } else {
+      this.accountList.nativeElement.scrollTo({
+        left: this.accountList.nativeElement.scrollLeft + 150,
+        behavior: 'smooth',
+      });
+    }
   }
 
   public scrollLeft(): void {
+    this.end = false;
+    if (this.accountList.nativeElement.scrollLeft === 0) {
+      this.start = true;
+    }
     this.accountList.nativeElement.scrollTo({
       left: this.accountList.nativeElement.scrollLeft - 150,
       behavior: 'smooth',
