@@ -74,16 +74,19 @@ For testing purpose, you can login with one of the following credentials:
 
 ## Environement variables
 
-| Variable         | Default value                                     |
-| :--------------- | :------------------------------------------------ |
-| `OIDC_CLIENT_ID` |                                                   |
-| `CLIENT_SECRET`  |                                                   |
-| `SESSION_SECRET` | Generated uiid                                    |
-| `FFDC`           | `https://api.fusionfabric.cloud`                  |
-| `PORT`           | `3000`                                            |
-| `OIDC_ISSUER`    | `https://api.fusionfabric.cloud/login/v1/sandbox` |
-| `OIDC_SCOPES`    | `openid profile`                                  |
-| `OIDC_ORIGIN`    | `http://localhost:3000`                           |
+| Variable                 | Default value                                                |
+| :----------------------- | :----------------------------------------------------------- |
+| `OIDC_CLIENT_ID`         |                                                              |
+| `CLIENT_SECRET`          |                                                              |
+| `OIDC_CLIENT_ID_B2B`     |                                                              |
+| `OIDC_CLIENT_SECRET_B2B` |                                                              |
+| `SESSION_SECRET`         | Generated uiid                                               |
+| `FFDC`                   | `https://api.fusionfabric.cloud`                             |
+| `PORT`                   | `3000`                                                       |
+| `OIDC_ISSUER`            | `https://api.fusionfabric.cloud/login/v1/sandbox`            |
+| `OIDC_TOKEN_URL`         | `https://api.fusionfabric.cloud/login/v1/sandbox/oidc/token` |
+| `OIDC_SCOPES`            | `openid profile`                                             |
+| `OIDC_ORIGIN`            | `http://localhost:3000`                                      |
 
 <br/>
 

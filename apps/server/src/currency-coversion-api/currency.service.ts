@@ -2,7 +2,7 @@ import { HttpService, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Observable } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
-import {Conversion, Rates} from "@ffdc-corporate-banking-sample/data"
+import { Conversion, Rates } from '@ffdc-corporate-banking-sample/data';
 
 @Injectable()
 export class CurrencyService {
@@ -12,21 +12,7 @@ export class CurrencyService {
   ) {}
 
   getFxRates(): Observable<Rates> {
-    const FFDC = this.configService.get('FFDC');
-
-    return this.fetchApi(
-      this.configService.get('OIDC_TOKEN_URL'),
-      this.configService.get('OIDC_CLIENT_ID_B2B'),
-      this.configService.get('OIDC_CLIENT_SECRET_B2B')
-    )
-      .pipe(
-        flatMap((token) =>
-          this.httpService.get(`${FFDC}/fxrate/v1/latest`, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-        )
-      )
-      .pipe(map((response) => response.data));
+    return this.fetchApi(`latest`).pipe(map((response) => response.data));
   }
 
   convertAmount(
@@ -34,66 +20,44 @@ export class CurrencyService {
     toCurrency,
     amount: string
   ): Observable<Conversion> {
-    const FFDC = this.configService.get('FFDC');
-
     return this.fetchApi(
-      this.configService.get('OIDC_TOKEN_URL'),
-      this.configService.get('OIDC_CLIENT_ID_B2B'),
-      this.configService.get('OIDC_CLIENT_SECRET_B2B')
-    )
-      .pipe(
-        flatMap((token) =>
-          this.httpService.get(
-            `${FFDC}/fxrate/v1/convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`,
-            { headers: { Authorization: `Bearer ${token}` } }
-          )
-        )
-      )
-      .pipe(map((response) => response.data));
+      `convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`
+    ).pipe(map((response) => response.data));
   }
 
-  rateBase(base: string) :Observable<Rates> {
-    const FFDC = this.configService.get('FFDC');
-
-    return this.fetchApi(
-      this.configService.get('OIDC_TOKEN_URL'),
-      this.configService.get('OIDC_CLIENT_ID_B2B'),
-      this.configService.get('OIDC_CLIENT_SECRET_B2B')
-    )
-      .pipe(
-        flatMap((token) =>
-          this.httpService.get(`${FFDC}/fxrate/v1/latest?base=${base}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-        )
-      )
-      .pipe(map((response) => response.data));
+  rateBase(base: string): Observable<Rates> {
+    return this.fetchApi(`latest?base=${base}`).pipe(
+      map((response) => response.data)
+    );
   }
 
   pastExchangeRates(date: string) {
-    const FFDC = this.configService.get('FFDC');
-
-    return this.fetchApi(
-      this.configService.get('OIDC_TOKEN_URL'),
-      this.configService.get('OIDC_CLIENT_ID_B2B'),
-      this.configService.get('OIDC_CLIENT_SECRET_B2B')
-    )
-      .pipe(
-        flatMap((token) =>
-          this.httpService.get(`${FFDC}/fxrate/v1/${date}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-        )
-      )
-      .pipe(map((response) => response.data));
+    return this.fetchApi(`${date}`).pipe(map((response) => response.data));
   }
 
-  fetchApi(url, client_id, client_secret): Observable<any> {
+  private fetchApi(path: string) {
+    const FFDC = this.configService.get('FFDC');
+
+    return this.getToken().pipe(
+      flatMap((token) =>
+        this.httpService.get(`${FFDC}/fxrate/v1/${path}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      )
+    );
+  }
+
+  private getToken(
+    url = this.configService.get('OIDC_TOKEN_URL'),
+    client_id = this.configService.get('OIDC_CLIENT_ID_B2B'),
+    client_secret = this.configService.get('OIDC_CLIENT_SECRET_B2B')
+  ): Observable<any> {
     const data =
       'grant_type=client_credentials&client_id=' +
       client_id +
       '&client_secret=' +
       client_secret;
+
     return this.httpService
       .post(url, data, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
