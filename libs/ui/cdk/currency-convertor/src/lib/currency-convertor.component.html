@@ -27,7 +27,7 @@
                             </mat-icon>
                             <mat-select [formControl]="fromCurrencyControl" [(ngModel)]="selectedFromCurrency"
                                 (selectionChange)="changeFromCurrencyBase(selectedFromCurrency)">
-                                <mat-option [value]="selectedFromCurrency">
+                                <mat-option *ngIf="selectedBaseCurrency=='EUR'" [value]="selectedFromCurrency">
                                     {{ selectedFromCurrency }}
                                 </mat-option>
 
@@ -52,9 +52,6 @@
                             </mat-icon>
                             <mat-select [formControl]="toCurrencyControl" [(ngModel)]="selectedToCurrency"
                                 (selectionChange)="changeToCurrency(selectedToCurrency)">
-                                <mat-option [value]="selectedToCurrency">
-                                    {{ selectedToCurrency }}
-                                </mat-option>
                                 <mat-option *ngFor="let currency of currencyObject" [value]="currency">
                                     {{ currency }}
                                 </mat-option>
@@ -78,6 +75,9 @@
                     <div class="from-input">
                         <mat-select [formControl]="baseCurrencyControl" [(ngModel)]="selectedBaseCurrency"
                             (selectionChange)="changeFromCurrencyBase(selectedBaseCurrency)">
+                            <mat-option *ngIf="selectedBaseCurrency=='EUR'" [value]="selectedBaseCurrency">
+                                {{ selectedBaseCurrency }}
+                            </mat-option>
                             <mat-option *ngFor="let currency of currencyObject" [value]="currency">
                                 {{ currency }}
                             </mat-option>
