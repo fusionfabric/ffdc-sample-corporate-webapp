@@ -22,7 +22,7 @@
 ## Demo
 
 <p align="center">
-  <img src="./media/ffdc-corporate-banking-sample-app-demo.gif" alt="Sample app gif"/>
+  <img src="./media/ffdc-corporate-banking-sample-app.gif" alt="Sample app gif"/>
 </p>
 
 <br/>
