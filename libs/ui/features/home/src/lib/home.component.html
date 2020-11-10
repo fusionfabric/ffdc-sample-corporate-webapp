@@ -7,7 +7,10 @@
             </div>
         </ng-container>
         <ng-template #loadingGlobalBalance>
-            <uxg-skeleton-text animated style="width: 300px"></uxg-skeleton-text>
+            <div>
+                <uxg-skeleton-text style="width: 300px; height: 50px;" animated></uxg-skeleton-text>
+                <uxg-skeleton-text style="width: 300px; height: 40px;" animated></uxg-skeleton-text>
+            </div>
         </ng-template>
 
         <div class="paginator" *ngIf="!mobileScreen">

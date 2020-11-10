@@ -56,8 +56,11 @@ header {
 
     .account-services-headline {
       font-size: $margin;
-      .global-balance{
-        .uxg-h3,p{
+
+      .global-balance {
+
+        .uxg-h3,
+        p {
           font-size: $uxg-spacing-4;
         }
       }
@@ -77,8 +80,11 @@ header {
 
     .account-services-headline {
       font-size: $margin;
-      .global-balance{
-        .uxg-h3,p{
+
+      .global-balance {
+
+        .uxg-h3,
+        p {
           font-size: $uxg-spacing-4;
         }
       }
@@ -87,7 +93,7 @@ header {
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 500px) and (max-width: 1026px) {
+@media only screen and (min-width: 500px) and (max-width: 1024px) {
   header {
     margin-bottom: $margin;
     height: 30%;
@@ -100,7 +106,7 @@ header {
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 1026px) {
+@media only screen and (min-width: 1025px) {
   .header {
     margin-bottom: $uxg-spacing-5;
   }
