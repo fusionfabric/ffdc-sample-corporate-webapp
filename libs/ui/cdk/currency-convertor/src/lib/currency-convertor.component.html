@@ -78,9 +78,6 @@
                     <div class="from-input">
                         <mat-select [formControl]="baseCurrencyControl" [(ngModel)]="selectedBaseCurrency"
                             (selectionChange)="changeFromCurrencyBase(selectedBaseCurrency)">
-                            <mat-option [value]="selectedBaseCurrency">
-                                {{ selectedBaseCurrency }}
-                            </mat-option>
                             <mat-option *ngFor="let currency of currencyObject" [value]="currency">
                                 {{ currency }}
                             </mat-option>
