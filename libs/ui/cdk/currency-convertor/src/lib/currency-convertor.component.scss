@@ -10,7 +10,6 @@
 }
 
 .currency-card {
-
   border-radius: $uxg-spacing-1 $uxg-spacing-1 $uxg-spacing-0 $uxg-spacing-0;
 
   ::ng-deep .mat-card-header-text {
@@ -115,7 +114,7 @@
   text-align: center;
 }
 
-/* Mobile Styles */
+/* Mobile Styles
 @media only screen and (max-width: 376px) {
   .currency-card {
     .currency-convertor-title {
@@ -127,6 +126,35 @@
     .mat-card-content {
       .mat-tab-group {
         padding: $uxg-spacing-0;
+      }
+    }
+  }
+}
+ */
+
+/* Mobile Styles */
+@media only screen and (max-width: 415px) {
+  .currency-card {
+    .currency-convertor-title {
+      .uxg-h4 {
+        font-size: $uxg-spacing-3;
+      }
+    }
+
+    .mat-card-content {
+      .mat-tab-group {
+        padding: $uxg-spacing-0;
+      }
+    }
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 500px) and (max-width: 1024px) {
+  .currency-card {
+    .mat-card-content {
+      .mat-tab-group {
+        padding: $uxg-spacing-1;
       }
     }
   }
