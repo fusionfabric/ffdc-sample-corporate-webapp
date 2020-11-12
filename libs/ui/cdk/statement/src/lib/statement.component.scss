@@ -15,10 +15,6 @@
       display: flex;
       padding: $uxg-spacing-3 $uxg-spacing-0 $uxg-spacing-3 $uxg-spacing-2;
 
-      mat-icon {
-        margin-top: $uxg-spacing-1;
-      }
-
       .transaction-list-title {
         display: flex;
         padding-left: $uxg-spacing-3;
@@ -122,15 +118,5 @@
         }
       }
     }
-  }
-}
-
-
-/* Mobile Styles */
-@media only screen and (max-width: 415px) {
-  .transaction-list-title{
-    .uxg-h4 {
-      font-size: $uxg-spacing-3;
-    }    
   }
 }
