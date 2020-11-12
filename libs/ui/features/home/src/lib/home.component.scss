@@ -1,7 +1,7 @@
 @import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
 @import "./home.component.theme";
 
-$margin: $uxg-spacing-4+$uxg-spacing-2; // $margin;
+$margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
 
 header {
   background-image: url(/assets/wave-top.svg);
@@ -32,6 +32,7 @@ header {
   white-space: nowrap;
   padding-right: $margin * 2;
   margin-left: -$margin;
+  padding-bottom: 3px;
 
   uxg-account-card,
   uxg-account-card-skeleton {
@@ -58,7 +59,6 @@ header {
       font-size: $margin;
 
       .global-balance {
-
         .uxg-h3,
         p {
           font-size: $uxg-spacing-4;
@@ -82,7 +82,6 @@ header {
       font-size: $margin;
 
       .global-balance {
-
         .uxg-h3,
         p {
           font-size: $uxg-spacing-4;
