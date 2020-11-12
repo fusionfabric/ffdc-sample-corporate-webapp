@@ -1,14 +1,21 @@
 @mixin home-theme($theme) {
-    $backgrounds: map-get($theme, "background");
-    $background: mat-color($backgrounds, "background");
-    
-    header {
-        .account-services-headline {
-            color: mat-color($backgrounds, card);
-          } 
-    }
+  $backgrounds: map-get($theme, 'background');
+  $background: mat-color($backgrounds, 'background');
 
-    .wave {
-        fill: $background;
+  header {
+    .account-services-headline {
+      color: $background;
+
+      .paginator {
+        button:disabled {
+          opacity: 0.4;
+          color: $background;
+        }
+      }
     }
+  }
+
+  .wave {
+    fill: $background;
+  }
 }
