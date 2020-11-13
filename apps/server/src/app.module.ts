@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { OidcModule } from '@ffdc/nestjs-oidc';
 import { ProxyModule } from '@ffdc/nestjs-proxy';
@@ -11,9 +11,14 @@ import { CorporateAccountsModule } from '@ffdc/api_corporate-accounts';
 import { GqlConfigService } from './configs/graphql-config.service';
 import { OidcConfigService } from './configs/oidc-config.service';
 import { ServiceStaticConfigService } from './configs/serve-startic-config.service';
+import { CurrencyModule } from './currency-conversion-api/currency.module';
+import { CorpAccountsConfigService } from './configs/corp-accounts-config.service';
+import { BalanceModule } from './balance/balance.module';
 
 @Module({
   imports: [
+    CurrencyModule,
+    BalanceModule,
     ConfigModule.forRoot({
       isGlobal: true,
       ignoreEnvFile: process.env.NODE_ENV === 'production',
@@ -29,7 +34,10 @@ import { ServiceStaticConfigService } from './configs/serve-startic-config.servi
       useClass: ProxyConfigService,
       imports: [ConfigModule],
     }),
-    CorporateAccountsModule,
+    CorporateAccountsModule.forRootAsync({
+      useClass: CorpAccountsConfigService,
+      imports: [ConfigModule],
+    }),
     GraphQLModule.forRootAsync({
       useClass: GqlConfigService,
     }),

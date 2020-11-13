@@ -30,9 +30,15 @@
       "@ffdc-corporate-banking-sample/ui/cdk/statement": [
         "libs/ui/cdk/statement/src/index.ts"
       ],
+      "@ffdc-corporate-banking-sample/ui/cdk/currency-convertor": [
+        "libs/ui/cdk/currency-convertor/src/index.ts"
+      ],
       "@ffdc-corporate-banking-sample/ui/features/login": [
         "libs/ui/features/login/src/index.ts"
-      ]
+      ],
+      "@ffdc-corporate-banking-sample/data": [
+        "libs/data/src/index.ts"
+      ],
     }
   },
   "exclude": ["node_modules", "tmp"]

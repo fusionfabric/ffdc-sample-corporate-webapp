@@ -1,67 +1,121 @@
 @import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
+@import "./home.component.theme";
 
-$margin: $uxg-spacing-4 + $uxg-spacing-2; // 32px;
+$margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
 
 header {
-    background: linear-gradient(to right bottom, #0b0c3e 0, #1b1d5d 35%, #493696 85%, #694ed6);
-    margin: -$margin (-$margin) 0;
-    padding: $margin;
-    position: relative;
-    height: 230px;
+  background-image: url(/assets/wave-top.svg);
+  background-size: cover;
+  margin: -$margin (-$margin) $uxg-spacing-0;
+  padding: $margin;
+  position: relative;
+  height: 45%;
+  width: 100%;
 
-    h2 {
-        display: flex;
-        justify-content: space-between;
-    }
+  .account-services-headline {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    .paginator {
-        display: flex;
-        align-self: flex-end;
-    }
+  .paginator {
+    display: flex;
+    align-self: flex-end;
+  }
 }
 
 .accounts-list {
-    position: relative;
-    z-index: 10;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: $uxg-spacing-3;
-    margin-top: $uxg-spacing-4;
+  float: left;
+  position: relative;
+  overflow: auto;
+  z-index: 10;
+  width: 100%;
+  white-space: nowrap;
+  padding-right: $margin * 2;
+  margin-left: -$margin;
+  padding-bottom: 3px;
+
+  uxg-account-card,
+  uxg-account-card-skeleton {
+    display: inline-grid;
+    margin-left: $margin;
+  }
 }
 
 .wave {
-    margin: 0 (-$margin) -5px;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    z-index: 0;
+  margin: $uxg-spacing-0 (-$margin) -5px;
+  position: absolute;
+  width: 100%;
+  bottom: $uxg-spacing-0;
+  z-index: $uxg-spacing-0;
 }
 
 /* Mobile Styles */
-@media only screen and (max-width: 400px) {
-    header {
-        margin-bottom: 420px;
-    }
+@media only screen and (min-width: 377px) and (max-width: 415px) {
+  header {
+    margin-bottom: $uxg-spacing-4;
+    height: 35%;
 
-    .accounts-list {
-        grid-template-columns: 1fr;
+    .account-services-headline {
+      font-size: $margin;
+
+      .global-balance {
+        .uxg-h3,
+        p {
+          font-size: $uxg-spacing-4;
+        }
+      }
     }
+  }
+
+  .accounts-list {
+    padding-top: $margin;
+  }
+}
+
+/* Mobile Styles Small Screen */
+@media only screen and (max-width: 376px) {
+  header {
+    margin-bottom: $uxg-spacing-5;
+    height: 35%;
+
+    .account-services-headline {
+      font-size: $margin;
+
+      .global-balance {
+        .uxg-h3,
+        p {
+          font-size: $uxg-spacing-4;
+        }
+      }
+    }
+  }
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-    header {
-        margin-bottom: 100px;
-    }
+@media only screen and (min-width: 500px) and (max-width: 1024px) {
+  header {
+    margin-bottom: $margin;
+    height: 30%;
+  }
 
-    .accounts-list {
-        grid-template-columns: 1fr 1fr;
-    }
+  .accounts-list {
+    overflow: hidden;
+    padding-top: $margin;
+  }
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 961px) {
-    .accounts-list {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+@media only screen and (min-width: 1025px) {
+  .header {
+    margin-bottom: $uxg-spacing-5;
+  }
+
+  .content {
+    padding: $margin $margin * 2 $uxg-spacing-0 $margin;
+  }
+
+  .accounts-list {
+    overflow: hidden;
+    padding-top: $margin;
+  }
 }

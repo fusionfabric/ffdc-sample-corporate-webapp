@@ -36,6 +36,7 @@ export class CorporateAccountsGQLService {
                 id
                 currency
                 availableBalance
+                availableBalanceEquivalent
                 details {
                   number
                   country
@@ -51,7 +52,9 @@ export class CorporateAccountsGQLService {
                 }
               }
               _meta {
-                itemCount
+                limit,
+                itemCount,
+                pageCount,
               }
             }
           }

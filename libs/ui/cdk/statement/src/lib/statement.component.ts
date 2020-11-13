@@ -1,12 +1,11 @@
 import {
   Component,
-  OnInit,
   Input,
-  ViewChild,
-  TemplateRef,
+  OnInit,
 } from '@angular/core';
 import { AccountStatement } from '@ffdc/api_corporate-accounts/interfaces';
-import { UxgColumn, UxgColumnType } from '@ffdc/uxg-angular-components/table';
+import { from } from 'rxjs';
+import { groupBy, mergeMap, reduce, toArray } from 'rxjs/operators'
 
 @Component({
   selector: 'fcbs-statement',
@@ -14,35 +13,40 @@ import { UxgColumn, UxgColumnType } from '@ffdc/uxg-angular-components/table';
   styleUrls: ['./statement.component.scss'],
 })
 export class StatementComponent implements OnInit {
-  @Input() transactions: AccountStatement[];
 
-  @ViewChild('tableCellAmount', { static: true }) tableCellAmount: TemplateRef<
-    any
-  >;
-  @ViewChild('tableCellDate', { static: true }) tableCelldate: TemplateRef<any>;
+  private _transactions!: AccountStatement[];
+  transactionsByDate: AccountStatement[][];
 
-  columns: UxgColumn[];
 
-  columnsToDisplay = ['amount', 'postingDate'];
+  @Input()
+  public get transactions(): AccountStatement[] {
+    return this._transactions
+ 
+  }
 
-  constructor() {}
+  public set transactions(value: AccountStatement[]) {
+    this._transactions= value;
+    from(this._transactions).pipe(
+      groupBy(item => item.postingDate),
+      mergeMap((group$) => group$.pipe(reduce((acc, cur) => [...acc, cur], []))),
+      toArray()
+    )
+      .subscribe(groupedTransactions => {
+        this.transactionsByDate = groupedTransactions;
+      });
+  }
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.columns = [
-      {
-        name: 'amount',
-        type: UxgColumnType.cellTemplate,
-        cellTemplate: this.tableCellAmount,
-        displayName: 'Amount',
-        align: 'left',
-      },
-      {
-        name: 'postingDate',
-        type: UxgColumnType.cellTemplate,
-        cellTemplate: this.tableCelldate,
-        displayName: 'Posting Date',
-      },
-    ];
+  }
+
+  getAmountColor(item: AccountStatement) {
+    let color = '';
+    if (item.transactionType === 'CREDIT') {
+      color = 'var(--uxg-grass-100)';
+    }
+    return color;
   }
 }
 
@@ -53,4 +57,4 @@ export class StatementComponent implements OnInit {
   templateUrl: './statement.skeleton.html',
   styleUrls: ['./statement.component.scss'],
 })
-export class StatementSkeletonComponent {}
+export class StatementSkeletonComponent { }
