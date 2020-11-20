@@ -6,6 +6,7 @@ $margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
 header {
   background-image: url(/assets/gradient.png);
   background-size: cover;
+  background-position-y: center;
   margin: -$margin (-$margin) $uxg-spacing-0;
   padding: $margin;
   position: relative;
