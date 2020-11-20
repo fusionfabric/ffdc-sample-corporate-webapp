@@ -1,10 +1,11 @@
 @mixin home-theme($theme) {
   $backgrounds: map-get($theme, 'background');
   $background: mat-color($backgrounds, 'background');
+  $primary: map-get($theme, 'primary');
 
   header {
     .account-services-headline {
-      color: $background;
+      color: mat-color($primary, default-contrast);
 
       .paginator {
         button:disabled {
