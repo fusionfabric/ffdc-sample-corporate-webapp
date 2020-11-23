@@ -52,15 +52,9 @@
         }
       }
 
-      button {
-        width: fit-content;
+      .mat-icon-button {
         align-self: center;
-      }
-
-      button.mat-button .mat-icon {
-        margin-bottom: $uxg-spacing-4;
-        transform: rotate(90deg);
-        font-size: $uxg-spacing-4 !important;
+        margin-top: -18px;
       }
     }
 
