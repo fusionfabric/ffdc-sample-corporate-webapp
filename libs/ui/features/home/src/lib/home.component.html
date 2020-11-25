@@ -1,4 +1,5 @@
 <header>
+
     <div class="account-services-headline">
         <ng-container *ngIf="globalBalance$ | async as globalBalance; else loadingGlobalBalance">
             <div class="global-balance">
@@ -7,7 +8,7 @@
             </div>
         </ng-container>
         <ng-template #loadingGlobalBalance>
-            <div>
+            <div style="z-index: 10">
                 <uxg-skeleton-text style="width: 300px; height: 50px;" animated></uxg-skeleton-text>
                 <uxg-skeleton-text style="width: 300px; height: 40px;" animated></uxg-skeleton-text>
             </div>
@@ -43,7 +44,7 @@
         </div>
     </ng-template>
 
-    <div class="wave" [inlineSVG]="'/assets/wave.svg'"></div>
+    <div class="wave" [inlineSVG]="'/assets/waves.svg'"></div>
 </header>
 
 <div class="content" fxLayout="row wrap" fxLayoutGap="32px grid">

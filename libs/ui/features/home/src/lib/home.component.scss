@@ -1,12 +1,9 @@
-@import "~@ffdc/uxg-angular-theme/lib/core/style/spacing";
-@import "./home.component.theme";
+@import '~@ffdc/uxg-angular-theme/lib/core/style/spacing';
+@import './home.component.theme';
 
 $margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
 
 header {
-  background-image: url(/assets/gradient.png);
-  background-size: cover;
-  background-position-y: center;
   margin: -$margin (-$margin) $uxg-spacing-0;
   padding: $margin;
   position: relative;
@@ -16,6 +13,9 @@ header {
   .account-services-headline {
     display: flex;
     justify-content: space-between;
+    .global-balance {
+      z-index: 10;
+    }
   }
 
   .paginator {
@@ -53,8 +53,15 @@ header {
 /* Mobile Styles */
 @media only screen and (min-width: 377px) and (max-width: 415px) {
   header {
-    margin-bottom: $uxg-spacing-4;
     height: 35%;
+
+    .wave {
+      overflow: hidden;
+      top: $uxg-spacing-0;
+      ::ng-deep svg {
+        height: 200px;
+      }
+    }
 
     .account-services-headline {
       font-size: $margin;
@@ -67,10 +74,6 @@ header {
       }
     }
   }
-
-  .accounts-list {
-    padding-top: $margin;
-  }
 }
 
 /* Mobile Styles Small Screen */
@@ -78,6 +81,14 @@ header {
   header {
     margin-bottom: $uxg-spacing-5;
     height: 35%;
+
+    .wave {
+      overflow: hidden;
+      top: $uxg-spacing-0;
+      ::ng-deep svg {
+        height: 200px;
+      }
+    }
 
     .account-services-headline {
       font-size: $margin;
@@ -97,6 +108,14 @@ header {
   header {
     margin-bottom: $margin;
     height: 30%;
+
+    .wave {
+      top: $uxg-spacing-0;
+      overflow: hidden;
+      ::ng-deep svg {
+        height: 300px;
+      }
+    }
   }
 
   .accounts-list {
@@ -107,10 +126,6 @@ header {
 
 /* Desktop Styles */
 @media only screen and (min-width: 1025px) {
-  .header {
-    margin-bottom: $uxg-spacing-5;
-  }
-
   .content {
     padding: $margin $margin * 2 $uxg-spacing-0 $margin;
   }
