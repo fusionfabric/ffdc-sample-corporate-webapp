@@ -21,6 +21,7 @@ header {
   .paginator {
     display: flex;
     align-self: flex-end;
+    z-index:10;
   }
 }
 
