@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { OidcOptionsFactory, OidcModuleOptions } from '@ffdc/nestjs-oidc';
 import { ConfigService } from '@nestjs/config';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class OidcConfigService implements OidcOptionsFactory {
@@ -27,6 +28,7 @@ origin     : ${origin}`);
       authParams: {
         scopes: this.configService.get('OIDC_SCOPES'),
         resource: this.configService.get('OIDC_RESOURCE'),
+        nonce: uuidv4(),
       },
       origin,
     };
