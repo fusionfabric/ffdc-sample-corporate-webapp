@@ -33,11 +33,11 @@
 
 You need to register an application on [FusionFabric.cloud Developer Portal](https://developer.fusionfabric.cloud) and select both [Account and Balances - B2C](https://developer.fusionfabric.cloud/api/corporate-accounteinfo-me-v1-831cb09d-cc10-4772-8ed5-8a6b72ec8e01/docs) and [Exchange Rates and Currency Conversion ](https://developer.fusionfabric.cloud/api/fxrate-v1-f1ee44fa-bdd1-44ed-b4b5-50298b82f0d/docs) API .
 
-1. Setup environment variables
+2. Setup environment variables
 
 Rename `.env.template` to `.env` and setup `OIDC_CLIENT_ID` , `OIDC_CLIENT_SECRET` , `OIDC_CLIENT_ID_B2B` and `OIDC_CLIENT_SECRET_B2B` from the application created at step 1.
 
-1. Run `npm i`
+3. Run `npm i`
 
 <br/>
 
