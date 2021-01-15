@@ -21,7 +21,7 @@ header {
   .paginator {
     display: flex;
     align-self: flex-end;
-    z-index:10;
+    z-index: 10;
   }
 }
 
@@ -47,7 +47,7 @@ header {
   margin: $uxg-spacing-0 (-$margin) -5px;
   position: absolute;
   width: 100%;
-  top:$uxg-spacing-0;
+  top: $uxg-spacing-0;
   bottom: $uxg-spacing-0;
   z-index: $uxg-spacing-0;
 }
@@ -125,6 +125,10 @@ header {
 
 /* Desktop Styles */
 @media only screen and (min-width: 1025px) {
+  .wave {
+    top: -10%;
+  }
+
   .content {
     padding: $margin $margin * 2 $uxg-spacing-0 $margin;
   }
