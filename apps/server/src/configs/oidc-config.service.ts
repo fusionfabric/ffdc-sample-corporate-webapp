@@ -31,6 +31,9 @@ origin     : ${origin}`);
         nonce: uuidv4(),
       },
       origin,
+      defaultHttpOptions: {
+        timeout: 40000,
+      },
     };
   }
 }
