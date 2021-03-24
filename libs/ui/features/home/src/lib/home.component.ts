@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit {
   pageCount = 1;
   limit = 7;
 
+  @ViewChild('waveSvg') waveSvg: ElementRef;
+
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -140,5 +142,26 @@ export class HomeComponent implements OnInit {
       left: this.accountList.nativeElement.scrollLeft - 150,
       behavior: 'smooth',
     });
+  }
+
+  ngAfterViewInit() {
+    let svgGradientStop1, svgGradientStop2;
+    const rgbaRegex = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)/g;
+    const colorsGradient = getComputedStyle(document.body)
+      .getPropertyValue('--color-gradient')
+      .match(rgbaRegex);
+
+    if (!colorsGradient) {
+      // Finastra's gradient
+      svgGradientStop1 = `rgb(${getComputedStyle(document.body).getPropertyValue('--color-primary')})`;
+      svgGradientStop2 = `rgb(${getComputedStyle(document.body).getPropertyValue('--color-secondary')})`;
+    } else {
+      // Gradient from theme editor
+      svgGradientStop1 = colorsGradient[0];
+      svgGradientStop2 = colorsGradient[1];
+    }
+
+    this.waveSvg.nativeElement.style.setProperty('--svg-gradient-stop-1', svgGradientStop1);
+    this.waveSvg.nativeElement.style.setProperty('--svg-gradient-stop-2', svgGradientStop2);
   }
 }
