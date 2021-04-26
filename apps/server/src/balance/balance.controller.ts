@@ -1,4 +1,4 @@
-import { AccountType } from '@ffdc/api_corporate-accounts';
+import { AccountType } from '@finastra/api_corporate-accounts';
 import { Controller, Get, Param, Query, Req } from '@nestjs/common';
 import { BalanceService } from './balance.service';
 

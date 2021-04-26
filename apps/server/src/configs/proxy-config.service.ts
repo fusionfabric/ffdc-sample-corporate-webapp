@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import {
   ProxyModuleOptions,
   ProxyModuleOptionsFactory,
-} from '@ffdc/nestjs-proxy';
+} from '@finastra/nestjs-proxy';
 
 @Injectable()
 export class ProxyConfigService implements ProxyModuleOptionsFactory {

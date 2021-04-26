@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { setupSession, TokenGuard } from '@ffdc/nestjs-oidc';
+import { setupSession, TokenGuard } from '@finastra/nestjs-oidc';
 import * as compression from 'compression';
 
 async function bootstrap() {
