@@ -12,7 +12,7 @@ import {
   AccountwBalanceRes,
   AccountStatement,
   AccountwBalance,
-} from '@ffdc/api_corporate-accounts/interfaces';
+} from '@finastra/api_corporate-accounts/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Rates } from '@ffdc-corporate-banking-sample/data';
 import { of } from 'rxjs';

@@ -3,7 +3,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { AccountStatement } from '@ffdc/api_corporate-accounts/interfaces';
+import { AccountStatement } from '@finastra/api_corporate-accounts/interfaces';
 import { from } from 'rxjs';
 import { groupBy, mergeMap, reduce, toArray } from 'rxjs/operators'
 

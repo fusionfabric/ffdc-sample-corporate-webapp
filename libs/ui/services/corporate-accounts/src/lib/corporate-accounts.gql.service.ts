@@ -6,7 +6,7 @@ import {
   AccountwBalanceRes,
   AccountType,
   AccountStatementRes,
-} from '@ffdc/api_corporate-accounts/interfaces';
+} from '@finastra/api_corporate-accounts/interfaces';
 
 @Injectable({
   providedIn: 'any',

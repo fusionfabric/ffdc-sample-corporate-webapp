@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import {
   CorpAccountsModuleOptions,
   CorpAccountsModuleOptionsFactory,
-} from '@ffdc/api_corporate-accounts';
+} from '@finastra/api_corporate-accounts';
 
 @Injectable()
 export class CorpAccountsConfigService
