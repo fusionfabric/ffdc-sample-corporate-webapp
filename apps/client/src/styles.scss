@@ -1,10 +1,10 @@
-@import "~@ffdc/uxg-angular-theme/lib/core/core";
-@import "~@ffdc/uxg-angular-theme/lib/core/theming/all-theme";
-@import "~@ffdc/uxg-angular-theme/lib/core/typography/typography";
-@import "~@ffdc/uxg-angular-theme/theme-variables";
+@import "~@finastra/angular-theme/lib/core/core";
+@import "~@finastra/angular-theme/lib/core/theming/all-theme";
+@import "~@finastra/angular-theme/lib/core/typography/typography";
+@import "~@finastra/angular-theme/theme-variables";
 
-@import "~@ffdc/uxg-angular-components/global-nav/global-nav.theme";
-@import "~@ffdc/uxg-angular-components/skeleton-text/skeleton-text.theme";
+@import "~@finastra/angular-components/global-nav/global-nav.theme";
+@import "~@finastra/angular-components/skeleton-text/skeleton-text.theme";
 
 @import "../../../libs/ui/features/home/src/lib/home.component.theme";
 @import "../../../libs/ui/cdk/statement/src/lib/statement.component.theme";
