@@ -1,18 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import {
-  Component,
-  Input,
-  NgZone,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import {Conversion, Rates} from "@ffdc-corporate-banking-sample/data"
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-
+import { Component, OnInit } from '@angular/core';
+import { FxRatesService } from '@ffdc-corporate-banking-sample/ui/services/fx-rates';
 
 @Component({
   selector: 'fcbs-currency-convertor',
@@ -20,102 +7,62 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./currency-convertor.component.scss'],
 })
 export class CurrencyConvertor implements OnInit {
+  currencies: string[] = ['EUR', 'USD', 'CHF', 'NZD'];
 
-  selectedFromCurrency = "EUR";
-  selectedToCurrency = "USD";
-  selectedBaseCurrency=this.selectedFromCurrency;
-  amountInput = "2000";
-  showConvertedAmount=true;
+  amountInput = '2000';
 
-  currencyObject: string[];
-
-  private _currencyRates: Rates;
-
-  currencyRates$: Observable<Rates>
-
-  convertedAmount: number;
+  convertedAmount: string;
   convertedCurrency: string;
 
-  fromCurrencyControl = new FormControl();
-  toCurrencyControl = new FormControl();
-  baseCurrencyControl= new FormControl();
+  fromCurrency = this.currencies[0];
+  toCurrency = this.currencies[1];
 
-  displayedColumns: string[] = ['currency', 'rate'];
-
-
-  @Input()
-  public get currencyRates(): Rates {
-    return this._currencyRates
-  }
-
-  public set currencyRates(value: Rates) {
-    this._currencyRates = value;
-    this.currencyObject=Object.keys(this._currencyRates.rates);
-  }
-
-  constructor(private http: HttpClient) {}
+  constructor(private fxRates: FxRatesService) {}
 
   ngOnInit() {
-    this.currencyObject = Object.keys(this.currencyRates.rates);
-    this.selectedFromCurrency = this.currencyRates.base;
-    this.convertAmount(this.selectedFromCurrency, this.selectedToCurrency, this.amountInput);
-  }
-
-
-  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-    if(tabChangeEvent.index===1) {
-      this.showConvertedAmount=false;
-    }
-    else
-    this.showConvertedAmount=true;
-  }
-
-  changeCurrencyBase(base: string) {
-    return this.http.get<Rates>(`/rateBase?base=${base}`);
-  }
-
-  changeFromCurrencyBase(base: string) {
-    this.currencyRates$ = this.changeCurrencyBase(base)
-    this.selectedBaseCurrency= base;
-    this.currencyRates$.subscribe(currencyR => {
-      this.currencyRates = currencyR;
-    })
-  }
-
-  changeToCurrency(base: string) {
-    this.selectedToCurrency = base;
-  }
-
-  convertAmount(fromCurrency: string, toCurrency: string, amount: string) {
-    if (this.amountInput)
-      this.http.get<Conversion>(`/convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`)
-        .subscribe(conversion => {
-          this.convertedAmount = conversion.result;
-          this.convertedCurrency = toCurrency;
-        });
-  }
-
-  onChangeEvent(event: any) {
-    this.amountInput = event;
+    this.convertAmount(this.fromCurrency, this.toCurrency, this.amountInput);
   }
 
   reverseCurrencies() {
-    this.currencyRates$ = this.changeCurrencyBase(this.selectedToCurrency);
-    this.currencyRates$.subscribe(currencyR => {
-      this.currencyRates = currencyR;
-      this.updateSelectedValue();
-      this.convertAmount(this.selectedFromCurrency,this.selectedToCurrency,this.amountInput)
-    })
+    let previousCurrencies = [this.fromCurrency, this.toCurrency];
+    this.fromCurrency = previousCurrencies[1];
+    this.toCurrency = previousCurrencies[0];
+    this.convertAmount(this.fromCurrency, this.toCurrency, this.amountInput);
   }
 
-  updateSelectedValue() {
-    const tempCurrency = this.selectedFromCurrency;
-    this.selectedFromCurrency = this.currencyRates.base;
-    this.selectedBaseCurrency= this.selectedFromCurrency;
-    this.selectedToCurrency = tempCurrency;
+  convertAmount(
+    selectedFromCurrency: string,
+    selectedToCurrency: string,
+    amountInput: string
+  ) {
+    if (selectedFromCurrency == selectedToCurrency) {
+      this.convertedAmount = amountInput;
+      this.amountInput = amountInput;
+      this.convertedCurrency = selectedToCurrency;
+    } else {
+      this.fxRates
+        .convert(selectedFromCurrency, selectedToCurrency, amountInput)
+        .subscribe((conversion) => {
+          this.convertedCurrency = selectedToCurrency;
+          this.convertedAmount = conversion.convertedAmount;
+        });
+    }
+  }
+
+  onFromCurrencyChange(value: any) {
+    console.log(value);
+    this.fromCurrency = value;
+  }
+
+  onToCurrencyChange(value: any) {
+    this.toCurrency = value;
+  }
+
+  onAmountChange(value: any) {
+    this.amountInput = value;
+    this.convertAmount(this.fromCurrency, this.toCurrency, this.amountInput);
   }
 }
-
 
 // Skeleton
 
@@ -124,4 +71,4 @@ export class CurrencyConvertor implements OnInit {
   templateUrl: './currency.skeleton.html',
   styleUrls: ['./currency-convertor.component.scss'],
 })
-export class CurrencySkeletonComponent { }
+export class CurrencySkeletonComponent {}

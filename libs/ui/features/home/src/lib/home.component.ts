@@ -13,8 +13,6 @@ import {
   AccountStatement,
   AccountwBalance,
 } from '@finastra/api_corporate-accounts/interfaces';
-import { HttpClient } from '@angular/common/http';
-import { Rates } from '@ffdc-corporate-banking-sample/data';
 import { of } from 'rxjs';
 import { expand, reduce } from 'rxjs/operators';
 
@@ -26,7 +24,6 @@ import { expand, reduce } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
   accounts$ = new Subject<AccountwBalance[]>();
   transactions$ = new Subject<AccountStatement[]>();
-  currencyRates$: Observable<Rates>;
   globalBalance$ = new Subject<number>();
   equivalentCurrency = 'USD';
 
@@ -52,9 +49,7 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(
-    private corpAccountsGQL: CorporateAccountsGQLService,
-    private http: HttpClient
-  ) {}
+    private corpAccountsGQL: CorporateAccountsGQLService) {}
 
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -72,8 +67,7 @@ export class HomeComponent implements OnInit {
       this.globalBalance$.next(this.getGlobalBalance(accounts));
     });
 
-    this.getCurrencyRates();
-  }
+    }
 
   private getGlobalBalance(accounts: AccountwBalance[]): number {
     return accounts.reduce(
@@ -81,10 +75,6 @@ export class HomeComponent implements OnInit {
         prev + parseFloat(current.availableBalanceEquivalent.replace(/,/g, '')),
       0
     );
-  }
-
-  getCurrencyRates() {
-    this.currencyRates$ = this.http.get<Rates>('/rateBase?base=EUR');
   }
 
   getAccounts(

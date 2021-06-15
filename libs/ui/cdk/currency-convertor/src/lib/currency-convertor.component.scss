@@ -29,71 +29,32 @@
   }
 
   .mat-card-content {
-    .mat-tab-group {
-      padding: $uxg-spacing-4 $uxg-spacing-4 $uxg-spacing-3 $uxg-spacing-4;
+    display: flex;
+    flex-direction: column;
+
+    button.mat-icon-button {
+      display: block;
+      align-self: center;
+      margin-bottom: 16px;
     }
-    
-    .convert-tab {
-      padding: $uxg-spacing-3 * 2 $uxg-spacing-0 $uxg-spacing-4 $uxg-spacing-0;
-      display: flex;
-      flex-direction: column;
-
-      .amount-input {
-        ::ng-deep .mat-form-field-infix {
-          display: flex;
-        }
-      }
-
-      .from-input {
-        display: flex;
-
-        .mat-icon {
-          margin-right: $uxg-spacing-3;
-        }
-      }
-
-      .mat-icon-button {
-        align-self: center;
-        margin-top: -18px;
-      }
-    }
-
     .convert-button {
       width: -webkit-fill-available;
-    }
-
-    .tab-footer {
-      padding-top: $uxg-spacing-3 * 2;
-      text-align: center;
     }
 
     .amount-font {
       font: 300 28px/48px Roboto, roboto, 'Helvetica Neue', sans-serif;
       letter-spacing: normal;
     }
-
-    .base-field-title {
-      padding-top: $uxg-spacing-3 * 2;
-      margin-left: $uxg-spacing-1 / 2;
-      opacity: 0.5;
-    }
-
-    .base-field.mat-form-field {
-      width: 100%;
-    }
-
-    .table-container {
-      position: relative;
-      max-height: 315px;
-      overflow: auto;
-
-      ::ng-deep .mat-table {
-        width: 100%;
+    .from-input {
+      display: flex;
+      mat-icon {
+        margin-right: 8px;
       }
     }
-
-    .mat-card-actions {
-      justify-content: center;
+    .amount-input {
+      ::ng-deep .mat-form-field-infix {
+        display: flex;
+      }
     }
   }
 }
@@ -104,11 +65,9 @@
   text-align: center;
 }
 
-
 /* Mobile Styles */
 @media only screen and (max-width: 415px) {
   .currency-card {
-
     .mat-card-content {
       .mat-tab-group {
         padding: $uxg-spacing-0;
