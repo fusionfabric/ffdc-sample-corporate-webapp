@@ -8,15 +8,14 @@ import {
 import { FxRatesModule } from '@ffdc-corporate-banking-sample/ui/services/fx-rates';
 
 import {
-  CurrencyConvertor,
-  CurrencySkeletonComponent,
+  CurrencyConvertor
 } from './currency-convertor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  declarations: [CurrencyConvertor, CurrencySkeletonComponent],
+  declarations: [CurrencyConvertor],
   imports: [
     CommonModule,
     SharedModule,
@@ -27,6 +26,6 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule,
     FxRatesModule,
   ],
-  exports: [CurrencyConvertor, CurrencySkeletonComponent],
+  exports: [CurrencyConvertor],
 })
 export class CurrencyConvertorModule {}

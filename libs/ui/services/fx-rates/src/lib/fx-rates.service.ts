@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
 import {PROXY_URL, FX_RATES_SERVICE} from '@ffdc-corporate-banking-sample/ui/core';
+import {Conversion} from '@ffdc-corporate-banking-sample/data'
 
 @Injectable({
   providedIn: 'any',
@@ -15,7 +16,7 @@ export class FxRatesService {
   convert(fromCurrency: string,
     toCurrency,
     amount: string) {
-  return this.get<any>(`/convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`);
+  return this.get<Conversion>(`/convert?fromCurrency=${fromCurrency}&toCurrency=${toCurrency}&amount=${amount}`);
   }
 
   private get<T>(target: string) {

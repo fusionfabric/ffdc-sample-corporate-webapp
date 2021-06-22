@@ -63,12 +63,3 @@ export class CurrencyConvertor implements OnInit {
     this.convertAmount(this.fromCurrency, this.toCurrency, this.amountInput);
   }
 }
-
-// Skeleton
-
-@Component({
-  selector: 'fcbs-currency-skeleton',
-  templateUrl: './currency.skeleton.html',
-  styleUrls: ['./currency-convertor.component.scss'],
-})
-export class CurrencySkeletonComponent {}
