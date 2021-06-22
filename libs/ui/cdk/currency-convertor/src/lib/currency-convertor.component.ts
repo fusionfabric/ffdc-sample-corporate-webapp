@@ -7,15 +7,15 @@ import { FxRatesService } from '@ffdc-corporate-banking-sample/ui/services/fx-ra
   styleUrls: ['./currency-convertor.component.scss'],
 })
 export class CurrencyConvertor implements OnInit {
-  currencies: string[] = ['EUR', 'USD', 'CHF', 'NZD'];
+  currencies: string[] = ['AED','BMD','CAD','DJF','EUR','FJD','GBP','HKD','IDR','JMD','KES','MZN','USD', 'CHF', 'NZD'];
 
   amountInput = '2000';
 
   convertedAmount: string;
   convertedCurrency: string;
 
-  fromCurrency = this.currencies[0];
-  toCurrency = this.currencies[1];
+  fromCurrency = 'EUR';
+  toCurrency = 'USD';
 
   constructor(private fxRates: FxRatesService) {}
 
@@ -50,7 +50,6 @@ export class CurrencyConvertor implements OnInit {
   }
 
   onFromCurrencyChange(value: any) {
-    console.log(value);
     this.fromCurrency = value;
   }
 
