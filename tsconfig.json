@@ -26,6 +26,9 @@
       "@ffdc-corporate-banking-sample/ui/services/corporate-accounts": [
         "libs/ui/services/corporate-accounts/src/index.ts"
       ],
+      "@ffdc-corporate-banking-sample/ui/services/fx-rates": [
+        "libs/ui/services/fx-rates/src/index.ts"
+      ],
       "@ffdc-corporate-banking-sample/ui/core": ["libs/ui/core/src/index.ts"],
       "@ffdc-corporate-banking-sample/ui/cdk/statement": [
         "libs/ui/cdk/statement/src/index.ts"

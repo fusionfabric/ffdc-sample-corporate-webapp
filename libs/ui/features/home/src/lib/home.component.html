@@ -58,12 +58,7 @@
         </ng-template>
     </div>
     <div fxFlex="40%" fxFlex.xs="100%" fxFlex.sm="40%">
-        <ng-container *ngIf="currencyRates$ | async as currencyRates; else loadingCurrency">
-            <fcbs-currency-convertor [currencyRates]="currencyRates">
+            <fcbs-currency-convertor>
             </fcbs-currency-convertor>
-        </ng-container>
-        <ng-template #loadingCurrency>
-            <fcbs-currency-skeleton></fcbs-currency-skeleton>
-        </ng-template>
     </div>
 </div>

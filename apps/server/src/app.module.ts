@@ -11,13 +11,11 @@ import { CorporateAccountsModule } from '@finastra/api_corporate-accounts';
 import { GqlConfigService } from './configs/graphql-config.service';
 import { OidcConfigService } from './configs/oidc-config.service';
 import { ServiceStaticConfigService } from './configs/serve-startic-config.service';
-import { CurrencyModule } from './currency-conversion-api/currency.module';
 import { CorpAccountsConfigService } from './configs/corp-accounts-config.service';
 import { BalanceModule } from './balance/balance.module';
 
 @Module({
   imports: [
-    CurrencyModule,
     BalanceModule,
     ConfigModule.forRoot({
       isGlobal: true,
