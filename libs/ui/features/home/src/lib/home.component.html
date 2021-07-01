@@ -1,7 +1,7 @@
 <header>
 
     <div class="account-services-headline">
-        <ng-container *ngIf="globalBalance$ | async as globalBalance; else loadingGlobalBalance">
+        <ng-container *ngIf="globalBalance; else loadingGlobalBalance">
             <div class="global-balance">
                 <h3 class="uxg-h3">{{globalBalance | currency:equivalentCurrency}}</h3>
                 <p>Global Balance in {{equivalentCurrency}}</p>
@@ -24,11 +24,12 @@
         </div>
     </div>
 
-    <ng-container *ngIf="accounts$ | async as accounts; else loading">
+    <ng-container *ngIf="accounts; else loading">
         <div #accountList class="accounts-list">
             <uxg-account-card *ngFor="let account of accounts" [balance]="account.availableBalance"
-                [number]="account.details.number" [name]="account.details.bankShortName" [currency]="account.currency">
-            </uxg-account-card>
+            [number]="account.details.number" [name]="account.details.bankShortName" [currency]="account.currency"
+            [ngClass]="{'account-selected': selectedItem == account.id}" (click)='selectAccount(account)'>
+        </uxg-account-card>
         </div>
     </ng-container>
 

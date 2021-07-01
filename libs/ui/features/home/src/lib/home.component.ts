@@ -5,16 +5,14 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CorporateAccountsGQLService } from '@ffdc-corporate-banking-sample/ui/services/corporate-accounts';
 import {
   AccountType,
   AccountwBalanceRes,
   AccountStatement,
-  AccountwBalance,
+  AccountwBalance
 } from '@finastra/api_corporate-accounts/interfaces';
-import { of } from 'rxjs';
-import { expand, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -22,17 +20,16 @@ import { expand, reduce } from 'rxjs/operators';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  accounts$ = new Subject<AccountwBalance[]>();
-  transactions$ = new Subject<AccountStatement[]>();
-  globalBalance$ = new Subject<number>();
+  accounts: AccountwBalance[];
+  transactions$: Observable<AccountStatement[]>;
+  globalBalance: number;
   equivalentCurrency = 'USD';
 
   mobileScreen = false;
   end = false;
   start = true;
-  currentPage = 0;
-  pageCount = 1;
-  limit = 7;
+  limit = 200;
+  selectedItem: string;
 
   @ViewChild('waveSvg') waveSvg: ElementRef;
 
@@ -48,26 +45,21 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(
-    private corpAccountsGQL: CorporateAccountsGQLService) {}
+  constructor(private corpAccountsGQL: CorporateAccountsGQLService) {}
 
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
 
-    this.getAllAccounts().subscribe((data) => {
-      this.accounts$.next(data);
-      this.transactions$.next(
-        [].concat(...data.map((account) => account.statement.items))
-      );
-    });
 
-    this.accounts$.subscribe((accounts) => {
-      this.globalBalance$.next(this.getGlobalBalance(accounts));
+    this.getAccounts(this.limit).subscribe((accounts) => {
+      this.selectedItem = accounts.items[0].id;
+      this.transactions$ = this.corpAccountsGQL.getAccountStatement(this.selectedItem);
+      this.accounts=accounts.items.filter((item,index)=>accounts.items.indexOf(item)===index);
+      this.globalBalance = this.getGlobalBalance(this.accounts);
     });
-
-    }
+  }
 
   private getGlobalBalance(accounts: AccountwBalance[]): number {
     return accounts.reduce(
@@ -78,32 +70,12 @@ export class HomeComponent implements OnInit {
   }
 
   getAccounts(
-    limit: number,
-    currentPage: number
+    limit: number
   ): Observable<AccountwBalanceRes> {
     return this.corpAccountsGQL.getAccounts(
       AccountType.CURRENT,
       this.equivalentCurrency,
-      limit,
-      currentPage
-    );
-  }
-
-  getAllAccounts(): Observable<AccountwBalance[]> {
-    return this.getAccounts(this.limit, this.currentPage).pipe(
-      expand((response: AccountwBalanceRes) => {
-        if (response._meta.pageCount !== this.pageCount) {
-          this.currentPage += response._meta.limit;
-          this.pageCount++;
-          return this.getAccounts(this.limit, this.currentPage);
-        } else {
-          return of();
-        }
-      }),
-      reduce(
-        (acc, element: AccountwBalanceRes) => acc.concat(element.items),
-        []
-      )
+      limit
     );
   }
 
@@ -143,15 +115,30 @@ export class HomeComponent implements OnInit {
 
     if (!colorsGradient) {
       // Finastra's gradient
-      svgGradientStop1 = `rgb(${getComputedStyle(document.body).getPropertyValue('--color-primary')})`;
-      svgGradientStop2 = `rgb(${getComputedStyle(document.body).getPropertyValue('--color-secondary')})`;
+      svgGradientStop1 = `rgb(${getComputedStyle(
+        document.body
+      ).getPropertyValue('--color-primary')})`;
+      svgGradientStop2 = `rgb(${getComputedStyle(
+        document.body
+      ).getPropertyValue('--color-secondary')})`;
     } else {
       // Gradient from theme editor
       svgGradientStop1 = colorsGradient[0];
       svgGradientStop2 = colorsGradient[1];
     }
 
-    this.waveSvg.nativeElement.style.setProperty('--svg-gradient-stop-1', svgGradientStop1);
-    this.waveSvg.nativeElement.style.setProperty('--svg-gradient-stop-2', svgGradientStop2);
+    this.waveSvg.nativeElement.style.setProperty(
+      '--svg-gradient-stop-1',
+      svgGradientStop1
+    );
+    this.waveSvg.nativeElement.style.setProperty(
+      '--svg-gradient-stop-2',
+      svgGradientStop2
+    );
+  }
+
+  selectAccount(account) {
+    this.selectedItem = account.id;
+    this.transactions$ = this.corpAccountsGQL.getAccountStatement(account.id);
   }
 }

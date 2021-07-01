@@ -2,6 +2,7 @@
   $backgrounds: map-get($theme, 'background');
   $background: mat-color($backgrounds, 'background');
   $primary: map-get($theme, 'primary');
+  $foreground: map-get($theme, foreground);
 
   header {
     .account-services-headline {
@@ -13,6 +14,9 @@
           color: $background;
         }
       }
+    }
+    .account-selected {
+      border: 2px solid mat-color($foreground);
     }
   }
 

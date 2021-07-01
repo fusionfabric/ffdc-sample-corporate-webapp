@@ -14,12 +14,6 @@
         <div class="footer-content">
             <div class="transaction-actions">
                 <div class="uxg-subtitle-2 transaction-count"> {{transactions.length}} Transactions</div>
-                <div class="transaction-filter">
-                    <mat-icon class="material-icons" color="primary" aria-label="credit card icon">
-                        filter_list
-                    </mat-icon>
-                    <div class="uxg-subtitle-2">filter</div>
-                </div>
             </div>
             <div class="transactions-overflow">
                 <ng-container *ngFor="let transactions of transactionsByDate">
