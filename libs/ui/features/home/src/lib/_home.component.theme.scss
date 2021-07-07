@@ -1,11 +1,14 @@
-@mixin home-theme($theme) {
-  $backgrounds: map-get($theme, 'background');
-  $background: mat-color($backgrounds, 'background');
-  $primary: map-get($theme, 'primary');
+@use 'sass:map';
+@use '~@finastra/angular-theme/lib/core/theming/palette' as palette;
+
+@mixin theme($theme) {
+  $backgrounds: map.get($theme, 'background');
+  $background: palette.get-color-from-palette($backgrounds, 'background');
+  $primary: map.get($theme, 'primary');
 
   header {
     .account-services-headline {
-      color: mat-color($primary, default-contrast);
+      color: palette.get-color-from-palette($primary, default-contrast);
 
       .paginator {
         button:disabled {
