@@ -36,6 +36,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/architect": "^0.1201.2",
     "@angular/animations": "~12.1.1",
     "@angular/cdk": "12.1.1",
     "@angular/cli": "12.1.1",
