@@ -28,12 +28,11 @@
     "format": "nx format:write",
     "format:write": "nx format:write",
     "format:check": "nx format:check",
-    "update": "nx migrate latest",
+    "update": "ng update @nrwl/workspace",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "node tools/scripts/postinstall",
-    "update:apollo": "ng update apollo-angular"
+    "postinstall": "node tools/scripts/postinstall"
   },
   "private": true,
   "dependencies": {
