@@ -1,16 +1,17 @@
-@import '~@finastra/angular-theme/lib/core/style/spacing';
+@use 'sass:map';
+@use '~@finastra/angular-theme/lib/core/theming/palette' as palette;
 
-@mixin currency-theme($theme) {
-  $foreground: map-get($theme, foreground);
-  $text-secondary-color: mat-color($foreground, secondary-text);
+@mixin theme($theme) {
+  $foreground: map.get($theme, foreground);
+  $text-secondary-color: palette.get-color-from-palette($foreground, secondary-text);
   $primary: map-get($theme, primary);
 
   .mat-tab-label.mat-tab-label-active {
-    color: mat-color($primary, default);
+    color: palette.get-color-from-palette($primary, default);
   }
 
   .mat-form-field-appearance-legacy .mat-form-field-underline {
-    background-color: mat-color($foreground, divider, 0.1);
+    background-color: palette.get-color-from-palette($foreground, divider, 0.1);
   }
 
   .from-input {
@@ -20,7 +21,7 @@
   }
 
   .footer-conversion {
-    background-color: mat-color($primary, default, 0.1);
+    background-color: palette.get-color-from-palette($primary, default, 0.1);
   }
   
 }

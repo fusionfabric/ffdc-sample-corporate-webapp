@@ -1,34 +1,35 @@
-@import '~@finastra/angular-theme/lib/core/style/spacing';
+@use 'sass:map';
+@use '~@finastra/angular-theme/lib/core/theming/palette' as palette;
 
-@mixin statement-theme($theme) {
-  $background: map-get($theme, 'background');
-  $primary: map-get($theme, primary);
+@mixin theme($theme) {
+  $background: map.get($theme, 'background');
+  $primary: map.get($theme, primary);
 
   .transaction-list-card {
-    --uxg-grass-100: #{map-get($uxg-grass, 100)};
+    --uxg-grass-100: #{map.get(palette.$uxg-grass, 100)};
 
-    background-color: mat-color($primary, default, 0.1);
+    background-color: palette.get-color-from-palette($primary, default, 0.1);
 
     .transaction-list-menu {
-      color: mat-color($primary, default, 0.5);
+      color: palette.get-color-from-palette($primary, default, 0.5);
     }
 
     .mat-card-footer {
-      background-color: mat-color($background, card);
+      background-color: palette.get-color-from-palette($background, card);
     }
 
     .transaction-filter {
       .mat-icon {
-        color: mat-color($primary, default, 0.3);
+        color: palette.get-color-from-palette($primary, default, 0.3);
       }
 
       .uxg-subtitle-2 {
-        color: mat-color($primary, default, 0.3);
+        color: palette.get-color-from-palette($primary, default, 0.3);
       }
     }
 
     .transaction-date-header {
-      background: mat-color($primary, default, 0.1);
+      background: palette.get-color-from-palette($primary, default, 0.1);
     }
   }
 }
