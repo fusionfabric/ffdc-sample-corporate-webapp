@@ -25,7 +25,7 @@ export class CorporateAccountsService {
     offset = 0,
   ) {
     return this.get<AccountBasicRes[]>(
-      `?accountContext=${accountContext}&limit=${limit}&offset=${offset}`,
+      `?accountContext=VIEW-ACCOUNT&limit=${limit}&offset=${offset}`,
     );
   }
 
@@ -38,7 +38,7 @@ export class CorporateAccountsService {
     return this.get<AccountwBalanceRes>(
       `/balances-by-account-type?accountTypeForBalance=${accountType}&equivalentCurrency=${equivalentCurrency}&limit=${limit}&offset=${offset}`,
     ).pipe(
-      map((accounts) => {
+      map((accounts:AccountwBalanceRes) => {
         accounts.items = accounts.items.map((account) => {
           account.availableBalance = this.sanitizeNumber(
             account.availableBalance,
