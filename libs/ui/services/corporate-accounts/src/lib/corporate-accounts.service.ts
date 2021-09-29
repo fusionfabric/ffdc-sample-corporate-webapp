@@ -25,7 +25,7 @@ export class CorporateAccountsService {
     offset = 0,
   ) {
     return this.get<AccountBasicRes[]>(
-      `?accountContext=VIEW-ACCOUNT&limit=${limit}&offset=${offset}`,
+      `?accountContext=${accountContext}&limit=${limit}&offset=${offset}`,
     );
   }
 
