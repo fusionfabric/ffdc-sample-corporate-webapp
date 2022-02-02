@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '~@finastra/angular-theme/lib/core/theming/palette' as palette;
+@use '@finastra/angular-theme/lib/core/theming/palette' as palette;
 
 @mixin theme($theme) {
   $background: map.get($theme, 'background');

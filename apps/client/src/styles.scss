@@ -1,8 +1,8 @@
 @use 'sass:map';
-@use '~@finastra/angular-theme' as fds;
-@use '~@finastra/angular-theme/base';
+@use '@finastra/angular-theme' as fds;
+@use '@finastra/angular-theme/base';
 
-@use "~@finastra/angular-components/skeleton-text/skeleton-text.theme" as skeleton;
+@use "@finastra/angular-components/skeleton-text/src/skeleton-text.theme" as skeleton;
 
 @use "../../../libs/ui/features/home/src/lib/home.component.theme" as home;
 @use "../../../libs/ui/cdk/statement/src/lib/statement.component.theme" as statement;
