@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
-import {PROXY_URL, CORPORATE_ACCOUNTS_SERVICE} from '@ffdc-corporate-banking-sample/ui/core'
+import {
+  PROXY_URL,
+  CORPORATE_ACCOUNTS_SERVICE,
+} from '@ffdc-corporate-banking-sample/ui/core';
 import { map } from 'rxjs/operators';
 import {
   AccountContext,
@@ -16,16 +19,16 @@ export class CorporateAccountsService {
   constructor(
     private http: HttpClient,
     @Inject(PROXY_URL) protected proxyUrl: string,
-    @Inject(CORPORATE_ACCOUNTS_SERVICE) protected corporateAccounts: string,
+    @Inject(CORPORATE_ACCOUNTS_SERVICE) protected corporateAccounts: string
   ) {}
 
   getAccounts(
     accountContext: AccountContext.ViewAccount,
     limit = 10,
-    offset = 0,
+    offset = 0
   ) {
     return this.get<AccountBasicRes[]>(
-      `?accountContext=${accountContext}&limit=${limit}&offset=${offset}`,
+      `?accountContext=${accountContext}&limit=${limit}&offset=${offset}`
     );
   }
 
@@ -33,23 +36,23 @@ export class CorporateAccountsService {
     accountType: AccountType.CURRENT,
     equivalentCurrency: string = 'USD',
     limit = 10,
-    offset = 0,
+    offset = 0
   ) {
     return this.get<AccountwBalanceRes>(
-      `/balances-by-account-type?accountTypeForBalance=${accountType}&equivalentCurrency=${equivalentCurrency}&limit=${limit}&offset=${offset}`,
+      `/balances-by-account-type?accountTypeForBalance=${accountType}&equivalentCurrency=${equivalentCurrency}&limit=${limit}&offset=${offset}`
     ).pipe(
-      map((accounts:AccountwBalanceRes) => {
+      map((accounts: AccountwBalanceRes) => {
         accounts.items = accounts.items.map((account) => {
           account.availableBalance = this.sanitizeNumber(
-            account.availableBalance,
+            account.availableBalance
           );
           account.availableBalanceEquivalent = this.sanitizeNumber(
-            account.availableBalanceEquivalent,
+            account.availableBalanceEquivalent
           );
           return account;
         });
         return accounts;
-      }),
+      })
     );
   }
 

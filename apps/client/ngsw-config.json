@@ -27,9 +27,5 @@
       }
     }
   ],
-  "navigationUrls": [
-    "!/user/**",
-    "!/login/**",
-    "!/logout/**"
-  ]
+  "navigationUrls": ["!/user/**", "!/login/**", "!/logout/**"]
 }

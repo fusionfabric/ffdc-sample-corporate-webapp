@@ -48,8 +48,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(
-    private corpAccountsGQL: CorporateAccountsGQLService) {}
+  constructor(private corpAccountsGQL: CorporateAccountsGQLService) {}
 
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -66,8 +65,7 @@ export class HomeComponent implements OnInit {
     this.accounts$.subscribe((accounts) => {
       this.globalBalance$.next(this.getGlobalBalance(accounts));
     });
-
-    }
+  }
 
   private getGlobalBalance(accounts: AccountwBalance[]): number {
     return accounts.reduce(
@@ -136,22 +134,33 @@ export class HomeComponent implements OnInit {
 
   ngAfterViewInit() {
     let svgGradientStop1, svgGradientStop2;
-    const rgbaRegex = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)/g;
+    const rgbaRegex =
+      /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)/g;
     const colorsGradient = getComputedStyle(document.body)
       .getPropertyValue('--color-gradient')
       .match(rgbaRegex);
 
     if (!colorsGradient) {
       // Finastra's gradient
-      svgGradientStop1 = `rgb(${getComputedStyle(document.body).getPropertyValue('--color-primary')})`;
-      svgGradientStop2 = `rgb(${getComputedStyle(document.body).getPropertyValue('--color-secondary')})`;
+      svgGradientStop1 = `rgb(${getComputedStyle(
+        document.body
+      ).getPropertyValue('--color-primary')})`;
+      svgGradientStop2 = `rgb(${getComputedStyle(
+        document.body
+      ).getPropertyValue('--color-secondary')})`;
     } else {
       // Gradient from theme editor
       svgGradientStop1 = colorsGradient[0];
       svgGradientStop2 = colorsGradient[1];
     }
 
-    this.waveSvg.nativeElement.style.setProperty('--svg-gradient-stop-1', svgGradientStop1);
-    this.waveSvg.nativeElement.style.setProperty('--svg-gradient-stop-2', svgGradientStop2);
+    this.waveSvg.nativeElement.style.setProperty(
+      '--svg-gradient-stop-1',
+      svgGradientStop1
+    );
+    this.waveSvg.nativeElement.style.setProperty(
+      '--svg-gradient-stop-2',
+      svgGradientStop2
+    );
   }
 }

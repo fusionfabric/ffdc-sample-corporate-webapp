@@ -28,7 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     StatementModule,
     CurrencyConvertorModule,
     HttpClientModule,
-    FlexLayoutModule
-    ],
+    FlexLayoutModule,
+  ],
 })
 export class HomeModule {}

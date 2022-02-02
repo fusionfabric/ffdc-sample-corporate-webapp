@@ -22,7 +22,7 @@ export class ProxyConfigService implements ProxyModuleOptionsFactory {
         url: `${FFDC}/corporate/channels/fx-rate/me/v1`,
       },
     ];
-    
+
     return {
       services,
     };

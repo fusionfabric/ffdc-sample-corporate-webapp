@@ -7,9 +7,7 @@ import {
 } from '@ffdc-corporate-banking-sample/ui/shared';
 import { FxRatesModule } from '@ffdc-corporate-banking-sample/ui/services/fx-rates';
 
-import {
-  CurrencyConvertor
-} from './currency-convertor.component';
+import { CurrencyConvertor } from './currency-convertor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';

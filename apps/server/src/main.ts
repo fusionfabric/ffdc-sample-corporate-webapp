@@ -10,7 +10,7 @@ async function bootstrap() {
 
   app.use(compression());
 
-  setupSession(app,"Account Services");
+  setupSession(app, 'Account Services');
 
   const port = process.env.PORT || 3000;
   await app.listen(port);

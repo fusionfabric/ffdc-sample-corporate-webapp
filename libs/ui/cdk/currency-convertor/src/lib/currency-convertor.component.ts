@@ -7,7 +7,23 @@ import { FxRatesService } from '@ffdc-corporate-banking-sample/ui/services/fx-ra
   styleUrls: ['./currency-convertor.component.scss'],
 })
 export class CurrencyConvertor implements OnInit {
-  currencies: string[] = ['AED','BMD','CAD','DJF','EUR','FJD','GBP','HKD','IDR','JMD','KES','MZN','USD', 'CHF', 'NZD'];
+  currencies: string[] = [
+    'AED',
+    'BMD',
+    'CAD',
+    'DJF',
+    'EUR',
+    'FJD',
+    'GBP',
+    'HKD',
+    'IDR',
+    'JMD',
+    'KES',
+    'MZN',
+    'USD',
+    'CHF',
+    'NZD',
+  ];
 
   amountInput = '2000';
 

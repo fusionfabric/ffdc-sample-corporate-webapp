@@ -1,44 +1,44 @@
 :host {
-    height: 100vh;
-    width: 100vw;
-    display: block;
+  height: 100vh;
+  width: 100vw;
+  display: block;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 2fr 4fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+
+  h1 {
     margin: 0;
-    display: grid;
-    grid-template-rows: 2fr 4fr 1fr 1fr;
+  }
+
+  .main-image {
+    height: 40vh;
+  }
+
+  .login {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    box-shadow: -1px -4px 5px -2px rgba(0, 0, 0, 0.16);
+  }
+
+  .footer {
+    height: 100%;
+    width: 100%;
+    display: grid;
     justify-items: center;
+    grid-template-rows: 1fr 1fr;
 
-    h1 {
-        margin: 0;
+    h3 {
+      margin: 0;
+      align-self: center;
     }
 
-    .main-image {
-        height: 40vh;
+    img {
+      height: 30px;
     }
-
-    .login {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: -1px -4px 5px -2px rgba(0, 0, 0, 0.16);
-    }
-
-    .footer {
-        height: 100%;
-        width: 100%;
-        display: grid;
-        justify-items: center;
-        grid-template-rows: 1fr 1fr;
-
-        h3 {
-            margin: 0;
-            align-self: center;
-        }
-
-        img {
-            height: 30px;
-        }
-    }
+  }
 }

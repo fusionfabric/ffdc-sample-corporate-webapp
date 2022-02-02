@@ -41,5 +41,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: "dist"
-          path: "./dist"
+          name: 'dist'
+          path: './dist'

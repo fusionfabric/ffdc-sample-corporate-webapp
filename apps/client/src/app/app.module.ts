@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InlineSVGModule } from 'ng-inline-svg';
 
 import { SharedModule } from '@ffdc-corporate-banking-sample/ui/shared';
-import { CoreModule } from '@ffdc-corporate-banking-sample/ui/core'
+import { CoreModule } from '@ffdc-corporate-banking-sample/ui/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,7 @@ import { GraphQLModule } from './graphql.module';
     InlineSVGModule.forRoot(),
     GraphQLModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
   ],
 })
 export class AppModule {}

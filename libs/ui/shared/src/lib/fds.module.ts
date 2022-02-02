@@ -11,7 +11,7 @@ import { UxgTableModule } from '@finastra/angular-components/table';
     SkeletonTextModule,
     UxgUserProfileMenuModule,
     AccountCardModule,
-    UxgTableModule
+    UxgTableModule,
   ],
 })
 export class FDSModule {}

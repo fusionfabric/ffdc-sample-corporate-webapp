@@ -3,7 +3,10 @@
 
 @mixin theme($theme) {
   $foreground: map.get($theme, foreground);
-  $text-secondary-color: palette.get-color-from-palette($foreground, secondary-text);
+  $text-secondary-color: palette.get-color-from-palette(
+    $foreground,
+    secondary-text
+  );
   $primary: map-get($theme, primary);
 
   .mat-tab-label.mat-tab-label-active {
@@ -16,12 +19,11 @@
 
   .from-input {
     .mat-icon {
-      color: $text-secondary-color
+      color: $text-secondary-color;
     }
   }
 
   .footer-conversion {
     background-color: palette.get-color-from-palette($primary, default, 0.1);
   }
-  
 }
