@@ -32,7 +32,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "node ./decorate-angular-cli.js"
+    "postinstall": "node tools/scripts/postinstall"
   },
   "private": true,
   "dependencies": {
