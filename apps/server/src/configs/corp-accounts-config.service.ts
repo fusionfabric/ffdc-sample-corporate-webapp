@@ -7,8 +7,8 @@ import {
 
 @Injectable()
 export class CorpAccountsConfigService
-  implements CorpAccountsModuleOptionsFactory {
-
+  implements CorpAccountsModuleOptionsFactory
+{
   constructor(private configService: ConfigService) {}
 
   createModuleConfig(): CorpAccountsModuleOptions {

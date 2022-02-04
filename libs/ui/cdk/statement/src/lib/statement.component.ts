@@ -1,11 +1,7 @@
-import {
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AccountStatement } from '@finastra/api_corporate-accounts/interfaces';
 import { from } from 'rxjs';
-import { groupBy, mergeMap, reduce, toArray } from 'rxjs/operators'
+import { groupBy, mergeMap, reduce, toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'fcbs-statement',
@@ -13,33 +9,32 @@ import { groupBy, mergeMap, reduce, toArray } from 'rxjs/operators'
   styleUrls: ['./statement.component.scss'],
 })
 export class StatementComponent implements OnInit {
-
   private _transactions!: AccountStatement[];
   transactionsByDate: AccountStatement[][];
 
-
   @Input()
   public get transactions(): AccountStatement[] {
-    return this._transactions
- 
+    return this._transactions;
   }
 
   public set transactions(value: AccountStatement[]) {
-    this._transactions= value;
-    from(this._transactions).pipe(
-      groupBy(item => item.postingDate),
-      mergeMap((group$) => group$.pipe(reduce((acc, cur) => [...acc, cur], []))),
-      toArray()
-    )
-      .subscribe(groupedTransactions => {
+    this._transactions = value;
+    from(this._transactions)
+      .pipe(
+        groupBy((item) => item.postingDate),
+        mergeMap((group$) =>
+          group$.pipe(reduce((acc, cur) => [...acc, cur], []))
+        ),
+        toArray()
+      )
+      .subscribe((groupedTransactions) => {
         this.transactionsByDate = groupedTransactions;
       });
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getAmountColor(item: AccountStatement) {
     let color = '';
@@ -57,4 +52,4 @@ export class StatementComponent implements OnInit {
   templateUrl: './statement.skeleton.html',
   styleUrls: ['./statement.component.scss'],
 })
-export class StatementSkeletonComponent { }
+export class StatementSkeletonComponent {}

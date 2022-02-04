@@ -7,7 +7,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       # Setup
@@ -32,4 +32,3 @@ jobs:
       # Build
       - name: Build Package
         run: npm run build
-        

@@ -20,18 +20,18 @@ export function setupStatic(app: INestApplication) {
     (req, res) => {
       res.header(
         'Cache-Control',
-        'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0',
+        'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0'
       );
       res.header('Access-Control-Allow-Origin', '*');
       res.sendFile('index.html', { root: appFolder });
-    },
+    }
   );
 }
 
 export const isAuthenticated = (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   if ((req as any).isAuthenticated()) {
     return next();

@@ -1,7 +1,10 @@
 import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { expand, map, reduce } from 'rxjs/operators';
-import { AccountType, AccountwBalanceRes } from '@finastra/api_corporate-accounts';
+import {
+  AccountType,
+  AccountwBalanceRes,
+} from '@finastra/api_corporate-accounts';
 import { of } from 'rxjs';
 
 @Injectable()

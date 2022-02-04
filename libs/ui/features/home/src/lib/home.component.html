@@ -1,64 +1,77 @@
 <header>
-
-    <div class="account-services-headline">
-        <ng-container *ngIf="globalBalance$ | async as globalBalance; else loadingGlobalBalance">
-            <div class="global-balance">
-                <h3 class="uxg-h3">{{globalBalance | currency:equivalentCurrency}}</h3>
-                <p>Global Balance in {{equivalentCurrency}}</p>
-            </div>
-        </ng-container>
-        <ng-template #loadingGlobalBalance>
-            <div style="z-index: 10">
-                <uxg-skeleton-text style="width: 300px; height: 50px;" animated></uxg-skeleton-text>
-                <uxg-skeleton-text style="width: 300px; height: 40px;" animated></uxg-skeleton-text>
-            </div>
-        </ng-template>
-
-        <div class="paginator" *ngIf="!mobileScreen">
-            <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
-                <mat-icon>keyboard_arrow_left</mat-icon>
-            </button>
-            <button mat-icon-button (click)="scrollRight()" [disabled]="end">
-                <mat-icon>keyboard_arrow_right</mat-icon>
-            </button>
-        </div>
-    </div>
-
-    <ng-container *ngIf="accounts$ | async as accounts; else loading">
-        <div #accountList class="accounts-list">
-            <uxg-account-card *ngFor="let account of accounts" [balance]="account.availableBalance"
-                [number]="account.details.number" [name]="account.details.bankShortName" [currency]="account.currency">
-            </uxg-account-card>
-        </div>
+  <div class="account-services-headline">
+    <ng-container
+      *ngIf="globalBalance$ | async as globalBalance; else loadingGlobalBalance"
+    >
+      <div class="global-balance">
+        <h3 class="uxg-h3">
+          {{ globalBalance | currency: equivalentCurrency }}
+        </h3>
+        <p>Global Balance in {{ equivalentCurrency }}</p>
+      </div>
     </ng-container>
-
-    <ng-template #loading>
-        <div class="accounts-list">
-            <uxg-account-card-skeleton></uxg-account-card-skeleton>
-            <uxg-account-card-skeleton></uxg-account-card-skeleton>
-            <uxg-account-card-skeleton></uxg-account-card-skeleton>
-            <uxg-account-card-skeleton></uxg-account-card-skeleton>
-            <uxg-account-card-skeleton></uxg-account-card-skeleton>
-            <uxg-account-card-skeleton></uxg-account-card-skeleton>
-            <uxg-account-card-skeleton></uxg-account-card-skeleton>
-        </div>
+    <ng-template #loadingGlobalBalance>
+      <div style="z-index: 10">
+        <uxg-skeleton-text
+          style="width: 300px; height: 50px"
+          animated
+        ></uxg-skeleton-text>
+        <uxg-skeleton-text
+          style="width: 300px; height: 40px"
+          animated
+        ></uxg-skeleton-text>
+      </div>
     </ng-template>
 
-    <div class="wave" [inlineSVG]="'/assets/wave.svg'" #waveSvg></div>
+    <div class="paginator" *ngIf="!mobileScreen">
+      <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+      <button mat-icon-button (click)="scrollRight()" [disabled]="end">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="accounts$ | async as accounts; else loading">
+    <div #accountList class="accounts-list">
+      <uxg-account-card
+        *ngFor="let account of accounts"
+        [balance]="account.availableBalance"
+        [number]="account.details.number"
+        [name]="account.details.bankShortName"
+        [currency]="account.currency"
+      >
+      </uxg-account-card>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="accounts-list">
+      <uxg-account-card-skeleton></uxg-account-card-skeleton>
+      <uxg-account-card-skeleton></uxg-account-card-skeleton>
+      <uxg-account-card-skeleton></uxg-account-card-skeleton>
+      <uxg-account-card-skeleton></uxg-account-card-skeleton>
+      <uxg-account-card-skeleton></uxg-account-card-skeleton>
+      <uxg-account-card-skeleton></uxg-account-card-skeleton>
+      <uxg-account-card-skeleton></uxg-account-card-skeleton>
+    </div>
+  </ng-template>
+
+  <div class="wave" [inlineSVG]="'/assets/wave.svg'" #waveSvg></div>
 </header>
 
 <div class="content" fxLayout="row wrap" fxLayoutGap="32px grid">
-    <div fxFlex="60%" fxFlex.xs="100%" fxFlex.sm="60%">
-        <ng-container *ngIf="transactions$ | async as transactions; else loadingS">
-            <fcbs-statement [transactions]="transactions"></fcbs-statement>
-        </ng-container>
+  <div fxFlex="60%" fxFlex.xs="100%" fxFlex.sm="60%">
+    <ng-container *ngIf="transactions$ | async as transactions; else loadingS">
+      <fcbs-statement [transactions]="transactions"></fcbs-statement>
+    </ng-container>
 
-        <ng-template #loadingS>
-            <fcbs-statement-skeleton></fcbs-statement-skeleton>
-        </ng-template>
-    </div>
-    <div fxFlex="40%" fxFlex.xs="100%" fxFlex.sm="40%">
-            <fcbs-currency-convertor>
-            </fcbs-currency-convertor>
-    </div>
+    <ng-template #loadingS>
+      <fcbs-statement-skeleton></fcbs-statement-skeleton>
+    </ng-template>
+  </div>
+  <div fxFlex="40%" fxFlex.xs="100%" fxFlex.sm="40%">
+    <fcbs-currency-convertor> </fcbs-currency-convertor>
+  </div>
 </div>

@@ -8,7 +8,8 @@ import { join } from 'path';
 
 @Injectable()
 export class ServiceStaticConfigService
-  implements ServeStaticModuleOptionsFactory {
+  implements ServeStaticModuleOptionsFactory
+{
   appFolder = join(__dirname, '../../..', 'dist/apps/client');
 
   constructor(private configService: ConfigService) {}

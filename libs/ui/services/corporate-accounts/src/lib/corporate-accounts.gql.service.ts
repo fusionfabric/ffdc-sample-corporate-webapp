@@ -62,7 +62,7 @@ export class CorporateAccountsGQLService {
       })
       .pipe(
         shareReplay(1),
-        map((result:any) => result.data && result.data.accountsBalance)
+        map((result: any) => result.data && result.data.accountsBalance)
       );
   }
 }

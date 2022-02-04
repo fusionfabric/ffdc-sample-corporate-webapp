@@ -1,5 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { OidcOptionsFactory, OidcModuleOptions, UserInfoMethod } from '@finastra/nestjs-oidc';
+import {
+  OidcOptionsFactory,
+  OidcModuleOptions,
+  UserInfoMethod,
+} from '@finastra/nestjs-oidc';
 import { ConfigService } from '@nestjs/config';
 import { v4 as uuidv4 } from 'uuid';
 

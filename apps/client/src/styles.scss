@@ -1,12 +1,15 @@
 @use 'sass:map';
-@use '~@finastra/angular-theme' as fds;
-@use '~@finastra/angular-theme/base';
+@use '@finastra/angular-theme' as fds;
+@use '@finastra/angular-theme/base';
 
-@use "~@finastra/angular-components/skeleton-text/skeleton-text.theme" as skeleton;
+@use '@finastra/angular-components/skeleton-text/src/skeleton-text.theme' as
+  skeleton;
 
-@use "../../../libs/ui/features/home/src/lib/home.component.theme" as home;
-@use "../../../libs/ui/cdk/statement/src/lib/statement.component.theme" as statement;
-@use "../../../libs/ui/cdk/currency-convertor/src/lib/currency-convertor.component.theme" as currency;
+@use '../../../libs/ui/features/home/src/lib/home.component.theme' as home;
+@use '../../../libs/ui/cdk/statement/src/lib/statement.component.theme' as
+  statement;
+@use '../../../libs/ui/cdk/currency-convertor/src/lib/currency-convertor.component.theme'
+  as currency;
 
 @include fds.uxg-core();
 
@@ -16,11 +19,11 @@
 
 // Add components theme mixins inside this mixin
 @mixin app-theme($theme) {
-    @include  fds.uxg-material-theme($theme);
-    @include skeleton.theme($theme);
-    @include home.theme($theme);
-    @include statement.theme($theme);
-    @include currency.theme($theme);
+  @include fds.uxg-material-theme($theme);
+  @include skeleton.theme($theme);
+  @include home.theme($theme);
+  @include statement.theme($theme);
+  @include currency.theme($theme);
 }
 
 @include app-typography(fds.$typography);
@@ -28,20 +31,20 @@
 @include app-theme(fds.$light-theme);
 
 @media (prefers-color-scheme: dark) {
-    @include app-theme(fds.$dark-theme);
+  @include app-theme(fds.$dark-theme);
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 // Overrides
 .uxg-toolbar {
-    z-index: 15;
-    position: relative;
+  z-index: 15;
+  position: relative;
 }
