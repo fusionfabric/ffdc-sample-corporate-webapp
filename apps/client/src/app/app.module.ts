@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { InlineSVGModule } from 'ng-inline-svg';
@@ -21,5 +21,6 @@ import { GraphQLModule } from './graphql.module';
     HttpClientModule,
     CoreModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

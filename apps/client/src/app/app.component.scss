@@ -1,4 +1,15 @@
 :host {
   height: 100%;
   width: 100%;
+
+  mwc-icon-button {
+    color: var(--fds-primary);
+  }
+  fds-user-profile {
+    fds-button {
+      line-height: 0px;
+      padding: var(--fds-spacing-0) var(--fds-spacing-3) var(--fds-spacing-2) var(--fds-spacing-3);
+    }
+  }
 }
+
