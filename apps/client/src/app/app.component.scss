@@ -6,10 +6,44 @@
     color: var(--fds-primary);
   }
   fds-user-profile {
+    z-index: 2;
     fds-button {
       line-height: 0px;
       padding: var(--fds-spacing-0) var(--fds-spacing-3) var(--fds-spacing-2) var(--fds-spacing-3);
     }
+  }
+
+  mwc-icon-button {
+    color: var(--fds-primary);
+  }
+  .main-content {
+    color: var(--fds-on-background);
+    font: var(--fds-body-1);
+    position: absolute;
+    top: 56px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-x: auto;
+  }
+  fds-button {
+    padding-left: var(--fds-spacing-3);
+  }
+  .fds-sidenav {
+    --mdc-drawer-width: 300px;
+    background-color: var(--fds-surface);
+    color: var(--fds-on-surface);
+  }
+  .fds-sidenav-header {
+    background-color: var(--fds-background);
+    height: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .fds-sidenav-list {
+    --mdc-theme-text-primary-on-background: var(--fds-on-background);
+    width: 100%;
   }
 }
 

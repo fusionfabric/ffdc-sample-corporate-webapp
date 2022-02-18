@@ -14,6 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [HomeComponent],
+  exports: [HomeComponent],
   imports: [
     CommonModule,
     SharedModule,

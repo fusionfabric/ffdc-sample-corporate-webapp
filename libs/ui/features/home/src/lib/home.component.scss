@@ -4,7 +4,6 @@
 $margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
 
 header {
-  margin: -$margin (-$margin) $uxg-spacing-0;
   padding: $margin;
   position: relative;
   height: 45%;
@@ -14,14 +13,14 @@ header {
     display: flex;
     justify-content: space-between;
     .global-balance {
-      z-index: 10;
+      z-index: 1;
     }
   }
 
   .paginator {
     display: flex;
     align-self: flex-end;
-    z-index: 10;
+    z-index: 1;
   }
 }
 
@@ -29,7 +28,7 @@ header {
   float: left;
   position: relative;
   overflow: auto;
-  z-index: 10;
+  z-index: 1;
   width: 100%;
   white-space: nowrap;
   padding-right: $margin * 2;
@@ -106,7 +105,6 @@ header {
 /* Tablet Styles */
 @media only screen and (min-width: 500px) and (max-width: 1024px) {
   header {
-    margin-bottom: $margin;
     height: 30%;
 
     .wave {

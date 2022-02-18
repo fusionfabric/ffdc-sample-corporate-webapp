@@ -26,7 +26,9 @@ export class AppComponent {
       import("@finastra/app-bar");
       import("@finastra/user-profile");
       import("@finastra/button");
+      import("@finastra/sidenav");
       import("@material/mwc-icon-button");
+      import("@material/mwc-drawer");
     }
   }
 
@@ -43,6 +45,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
+    console.log(this.userProfile.nativeElement);
     this.userProfile.nativeElement.setAttribute("username",this.auth.user$.value['username']);
     this.appBar.nativeElement.setAttribute("appname", this.appName);  
   }
