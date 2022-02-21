@@ -2,7 +2,7 @@
 
 @use '@finastra/fds-theme' as fds;
 @use '@finastra/fds-theme/light';
-@use '@finastra/fds-theme/dark' with ( $class: 'fds-dark' );
+@use '@finastra/fds-theme/dark';
 
 @use '@finastra/angular-theme' as afds;
 @use '@finastra/angular-theme/base';
@@ -25,6 +25,7 @@
 // Add components theme mixins inside this mixin
 @mixin app-theme($theme) {
   @include afds.uxg-material-theme($theme);
+  @include fds.use-light-theme();
   @include skeleton.theme($theme);
   @include home.theme($theme);
   @include statement.theme($theme);
@@ -37,6 +38,7 @@
 
 @media (prefers-color-scheme: dark) {
   @include app-theme(afds.$dark-theme);
+  @include fds.use-dark-theme();
 }
 
 html,

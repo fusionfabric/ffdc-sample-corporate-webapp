@@ -10,7 +10,7 @@ import { isPlatformBrowser} from '@angular/common';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  appName = 'Corporate Account Services';
+  appName = 'Account Services';
 
   navigationNodes = routes;
 
@@ -27,6 +27,7 @@ export class AppComponent {
       import("@finastra/user-profile");
       import("@finastra/button");
       import("@finastra/sidenav");
+      import("@finastra/app-card");
       import("@material/mwc-icon-button");
       import("@material/mwc-drawer");
     }

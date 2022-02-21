@@ -17,14 +17,16 @@
     color: var(--fds-primary);
   }
   .main-content {
-    color: var(--fds-on-background);
-    font: var(--fds-body-1);
     position: absolute;
     top: 56px;
     right: 0;
     bottom: 0;
     left: 0;
-    overflow-x: auto;
+    padding: 2rem;
+   -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    color: var(--fds-on-background);
+    font: var(--fds-body-1);
   }
   fds-button {
     padding-left: var(--fds-spacing-3);
