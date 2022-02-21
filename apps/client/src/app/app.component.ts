@@ -16,8 +16,6 @@ import '@material/mwc-drawer';
 export class AppComponent {
   appName = 'Account Services';
 
-  isBrowser: boolean;
-
   @ViewChild('appBar') appBar: ElementRef;
   @ViewChild('userProfile') userProfile: ElementRef;
 
