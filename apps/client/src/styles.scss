@@ -1,5 +1,10 @@
 @use 'sass:map';
-@use '@finastra/angular-theme' as fds;
+
+@use '@finastra/fds-theme' as fds;
+@use '@finastra/fds-theme/light';
+@use '@finastra/fds-theme/dark';
+
+@use '@finastra/angular-theme' as afds;
 @use '@finastra/angular-theme/base';
 
 @use '@finastra/angular-components/skeleton-text/src/skeleton-text.theme' as
@@ -11,7 +16,7 @@
 @use '../../../libs/ui/cdk/currency-convertor/src/lib/currency-convertor.component.theme'
   as currency;
 
-@include fds.uxg-core();
+@include afds.uxg-core();
 
 // Add components typography mixins inside this mixin
 @mixin app-typography($typography) {
@@ -19,19 +24,21 @@
 
 // Add components theme mixins inside this mixin
 @mixin app-theme($theme) {
-  @include fds.uxg-material-theme($theme);
+  @include afds.uxg-material-theme($theme);
+  @include fds.use-light-theme();
   @include skeleton.theme($theme);
   @include home.theme($theme);
   @include statement.theme($theme);
   @include currency.theme($theme);
 }
 
-@include app-typography(fds.$typography);
+@include app-typography(afds.$typography);
 
-@include app-theme(fds.$light-theme);
+@include app-theme(afds.$light-theme);
 
 @media (prefers-color-scheme: dark) {
-  @include app-theme(fds.$dark-theme);
+  @include app-theme(afds.$dark-theme);
+  @include fds.use-dark-theme();
 }
 
 html,

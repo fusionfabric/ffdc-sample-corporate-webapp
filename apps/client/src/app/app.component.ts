@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '@ffdc-corporate-banking-sample/ui/auth';
-import { routes } from './constants';
-import { Router } from '@angular/router';
+import '@finastra/app-bar';
+import '@finastra/sidenav';
+import '@finastra/user-profile';
+import '@finastra/button';
+import '@finastra/app-card';
+import '@material/mwc-icon-button';
+import '@material/mwc-drawer';
 
 @Component({
   selector: 'fcbs-root',
@@ -9,21 +14,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  appName = 'Corporate Account Services';
+  appName = 'Account Services';
 
-  navigationNodes = routes;
+  @ViewChild('appBar') appBar: ElementRef;
+  @ViewChild('userProfile') userProfile: ElementRef;
 
-  constructor(public auth: AuthService, private router: Router) {}
-
-  nodeChosen(node) {
-    this.router.navigate([node.path]);
-  }
-
-  brandAction() {
-    this.router.navigate(['home']);
-  }
+  constructor(public auth: AuthService) {}
 
   logout() {
     this.auth.logout();
+  }
+
+  ngAfterViewInit() {
+    this.userProfile.nativeElement.setAttribute(
+      'username',
+      this.auth.user$.value['username']
+    );
+    this.appBar.nativeElement.setAttribute('appname', this.appName);
   }
 }

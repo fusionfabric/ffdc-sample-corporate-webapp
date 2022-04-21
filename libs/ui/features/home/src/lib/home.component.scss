@@ -4,8 +4,8 @@
 $margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
 
 header {
-  margin: -$margin (-$margin) $uxg-spacing-0;
-  padding: $margin;
+  margin: (-$margin) (-$margin) 0;
+  padding: 32px;
   position: relative;
   height: 45%;
   width: 100%;
@@ -14,14 +14,14 @@ header {
     display: flex;
     justify-content: space-between;
     .global-balance {
-      z-index: 10;
+      z-index: 1;
     }
   }
 
   .paginator {
     display: flex;
     align-self: flex-end;
-    z-index: 10;
+    z-index: 1;
   }
 }
 
@@ -29,7 +29,7 @@ header {
   float: left;
   position: relative;
   overflow: auto;
-  z-index: 10;
+  z-index: 1;
   width: 100%;
   white-space: nowrap;
   padding-right: $margin * 2;
@@ -50,6 +50,10 @@ header {
   top: $uxg-spacing-0;
   bottom: $uxg-spacing-0;
   z-index: $uxg-spacing-0;
+}
+
+.content {
+  padding-top: 32px;
 }
 
 /* Mobile Styles */
@@ -106,7 +110,6 @@ header {
 /* Tablet Styles */
 @media only screen and (min-width: 500px) and (max-width: 1024px) {
   header {
-    margin-bottom: $margin;
     height: 30%;
 
     .wave {
@@ -130,7 +133,7 @@ header {
   }
 
   .content {
-    padding: $margin $margin * 2 $uxg-spacing-0 $margin;
+    padding: 0px $margin * 2 $uxg-spacing-0 $margin;
   }
 
   .accounts-list {
