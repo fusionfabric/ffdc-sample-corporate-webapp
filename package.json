@@ -9,9 +9,9 @@
     "start:prod": "node dist/apps/server/main.js",
     "start:prod:local": "node -r dotenv/config dist/apps/server/main.js",
     "build": "ng build",
-    "build:client": "ng build client",
+    "build:client": "nx run client:build:production --statsJson",
     "build:server": "ng build server",
-    "build:prod": "npm run build:client -- --prod && npm run build:server -- --prod",
+    "build:prod": "npm run build:client && npm run build:server -- --prod",
     "heroku-postbuild": "node tools/scripts/heroku-postbuild",
     "dev": "ng build --watch",
     "test": "ng test",
@@ -32,6 +32,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
+    "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json",
     "postinstall": "node ./decorate-angular-cli"
   },
   "private": true,
@@ -54,13 +55,13 @@
     "@finastra/angular-components": "3.1.1",
     "@finastra/angular-theme": "3.1.1",
     "@finastra/api_corporate-accounts": "^0.3.0",
-    "@finastra/nestjs-oidc": "^0.24.2",
-    "@finastra/nestjs-proxy": "^0.4.0",
     "@finastra/app-bar": "0.0.42",
     "@finastra/app-card": "0.0.42",
     "@finastra/button": "0.0.42",
     "@finastra/fds-theme": "0.0.42",
     "@finastra/icon-button": "0.0.42",
+    "@finastra/nestjs-oidc": "^0.24.2",
+    "@finastra/nestjs-proxy": "^0.4.0",
     "@finastra/sidenav": "0.0.42",
     "@finastra/user-profile": "0.0.42",
     "@material/mwc-icon-button": "0.26.1",
@@ -110,6 +111,8 @@
     "ts-jest": "^26.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "4.5.5"
+    "typescript": "4.5.5",
+    "webpack-bundle-analyzer": "^4.6.1",
+    "webpack-cli": "^4.10.0"
   }
 }
