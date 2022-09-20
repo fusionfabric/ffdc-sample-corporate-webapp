@@ -14,28 +14,20 @@
   </div>
   <div slot="appContent">
     <fds-app-bar appname="" #appBar>
-        <mwc-icon-button icon="menu" slot="navigationIcon"></mwc-icon-button>
+      <fds-icon-button icon="menu" slot="navigationIcon"></fds-icon-button>
 
-        <mwc-icon-button icon="search" slot="actions"></mwc-icon-button>
-      <mwc-icon-button
-        icon="notifications_none"
-        slot="actions"
-      ></mwc-icon-button>
-        <mwc-icon-button icon="help_outline" slot="actions"></mwc-icon-button>
+      <fds-icon-button icon="search" slot="actions"></fds-icon-button>
+      <fds-icon-button icon="notifications_none" slot="actions"></fds-icon-button>
+      <fds-icon-button icon="help_outline" slot="actions"></fds-icon-button>
       <fds-user-profile slot="actions" username="" #userProfile>
-          <div slot="actions">
-          <fds-button
-            fullWidth
-            label="Logout"
-            icon="logout"
-            (click)="logout()"
-          ></fds-button>
-          </div>
-        </fds-user-profile>
-        <mwc-icon-button icon="more_vert" slot="actions"></mwc-icon-button>
-      </fds-app-bar>
-      <div class="main-content">
-        <app-home></app-home>
-      </div>
+        <div slot="actions">
+          <fds-button fullWidth label="Logout" icon="logout" (click)="logout()"></fds-button>
+        </div>
+      </fds-user-profile>
+      <fds-icon-button icon="more_vert" slot="actions"></fds-icon-button>
+    </fds-app-bar>
+    <div class="main-content">
+      <app-home></app-home>
     </div>
+  </div>
 </fds-sidenav>

@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { InlineSVGModule } from 'ng-inline-svg';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 import { SharedModule } from '@ffdc-corporate-banking-sample/ui/shared';
 import { CoreModule } from '@ffdc-corporate-banking-sample/ui/core';
@@ -21,8 +21,8 @@ import { HomeModule } from 'libs/ui/features/home/src/lib/home.module';
     GraphQLModule,
     HttpClientModule,
     CoreModule,
-    HomeModule
+    HomeModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

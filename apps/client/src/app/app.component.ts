@@ -6,7 +6,6 @@ import '@finastra/user-profile';
 import '@finastra/button';
 import '@finastra/app-card';
 import '@material/mwc-icon-button';
-import '@material/mwc-drawer';
 
 @Component({
   selector: 'fcbs-root',
