@@ -28,7 +28,7 @@
     "format": "nx format:write",
     "format:write": "nx format:write",
     "format:check": "nx format:check",
-    "update": "ng update @angular/core@14 @angular/cli@14",
+    "update": "ng update @nrwl/workspace",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
