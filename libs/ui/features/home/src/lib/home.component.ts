@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
   getAccounts(
     limit: number,
     currentPage: number
-  ): Observable<AccountwBalanceRes> {
+  ): any {
     return this.corpAccountsGQL.getAccounts(
       AccountType.CURRENT,
       this.equivalentCurrency,
