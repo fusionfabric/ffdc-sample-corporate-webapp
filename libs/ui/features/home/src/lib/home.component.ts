@@ -48,17 +48,18 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(private corpAccountsGQL: CorporateAccountsGQLService) {}
+  constructor(private corpAccountsGQL: CorporateAccountsGQLService) { }
 
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
 
-    this.getAllAccounts().subscribe((data) => {
-      this.accounts$.next(data);
+    this.getAccounts(this.limit, this.currentPage).subscribe((data) => {
+      this.accounts$.next(data.items);
+
       this.transactions$.next(
-        [].concat(...data.map((account) => account.statement.items))
+        [].concat(...data.items.map((account) => account.statement.items))
       );
     });
 
@@ -78,7 +79,7 @@ export class HomeComponent implements OnInit {
   getAccounts(
     limit: number,
     currentPage: number
-  ): any {
+  ): Observable<AccountwBalanceRes> {
     return this.corpAccountsGQL.getAccounts(
       AccountType.CURRENT,
       this.equivalentCurrency,
@@ -87,23 +88,24 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getAllAccounts(): Observable<AccountwBalance[]> {
-    return this.getAccounts(this.limit, this.currentPage).pipe(
-      expand((response: AccountwBalanceRes) => {
-        if (response._meta.pageCount !== this.pageCount) {
-          this.currentPage += response._meta.limit;
-          this.pageCount++;
-          return this.getAccounts(this.limit, this.currentPage);
-        } else {
-          return of();
-        }
-      }),
-      reduce(
-        (acc, element: AccountwBalanceRes) => acc.concat(element.items),
-        []
-      )
-    );
-  }
+  // getAllAccounts(): Observable<AccountwBalance[]> {
+  //   return this.getAccounts(this.limit, this.currentPage).pipe(
+  //     expand((response: AccountwBalanceRes) => {
+  //       if (response._meta.pageCount !== this.pageCount) {
+  //         console.log(response);
+  //         // this.currentPage += response._meta.limit;
+  //         // this.pageCount++;
+  //         return this.getAccounts(this.limit, this.currentPage);
+  //       } else {
+  //         return of();
+  //       }
+  //     }),
+  //     reduce(
+  //       (acc, element: AccountwBalanceRes) => acc.concat(element.items),
+  //       []
+  //     )
+  //   );
+  // }
 
   public scrollRight(): void {
     this.start = false;
