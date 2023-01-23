@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { InlineSVGModule } from 'ng-inline-svg';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 import { SharedModule } from '@ffdc-corporate-banking-sample/ui/shared';
 import { CoreModule } from '@ffdc-corporate-banking-sample/ui/core';
