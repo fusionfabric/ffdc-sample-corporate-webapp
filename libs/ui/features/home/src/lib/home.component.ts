@@ -13,8 +13,6 @@ import {
   AccountStatement,
   AccountwBalance,
 } from '@finastra/api_corporate-accounts/interfaces';
-import { of } from 'rxjs';
-import { expand, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -87,25 +85,6 @@ export class HomeComponent implements OnInit {
       currentPage
     );
   }
-
-  // getAllAccounts(): Observable<AccountwBalance[]> {
-  //   return this.getAccounts(this.limit, this.currentPage).pipe(
-  //     expand((response: AccountwBalanceRes) => {
-  //       if (response._meta.pageCount !== this.pageCount) {
-  //         console.log(response);
-  //         // this.currentPage += response._meta.limit;
-  //         // this.pageCount++;
-  //         return this.getAccounts(this.limit, this.currentPage);
-  //       } else {
-  //         return of();
-  //       }
-  //     }),
-  //     reduce(
-  //       (acc, element: AccountwBalanceRes) => acc.concat(element.items),
-  //       []
-  //     )
-  //   );
-  // }
 
   public scrollRight(): void {
     this.start = false;
