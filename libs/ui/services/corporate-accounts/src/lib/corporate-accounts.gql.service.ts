@@ -12,7 +12,7 @@ import {
   providedIn: 'any',
 })
 export class CorporateAccountsGQLService {
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) { }
 
   getAccounts(
     accountType: AccountType = AccountType.CURRENT,
@@ -21,7 +21,7 @@ export class CorporateAccountsGQLService {
     offset = 0
   ) {
     return this.apollo
-      .query<{ accountsBalance: AccountwBalanceRes }>({
+      .watchQuery<{ accountsBalance: AccountwBalanceRes }>({
         query: gql`
           {
             accountsBalance(
@@ -59,10 +59,7 @@ export class CorporateAccountsGQLService {
             }
           }
         `,
-      })
-      .pipe(
-        shareReplay(1),
-        map((result: any) => result.data && result.data.accountsBalance)
-      );
+      }).valueChanges
+      .pipe(map(result => result.data && result.data.accountsBalance))
   }
 }

@@ -9,12 +9,6 @@
     "OIDC_CLIENT_SECRET": {
       "description": "Client Secret"
     },
-    "OIDC_CLIENT_ID_B2B": {
-      "description": "Client ID B2B"
-    },
-    "OIDC_CLIENT_SECRET_B2B": {
-      "description": "Client Secret B2B"
-    },
     "OIDC_ORIGIN": {
       "description": "URL of the deployed application",
       "value": "https://REPLACE_WITH_APP_NAME.herokuapp.com"

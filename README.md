@@ -31,13 +31,13 @@
 
 1. [Register an application on FFDC](https://medium.com/finastra-fintechs-devs/create-an-application-on-finastras-developer-portal-d90ef266cafb)
 
-You need to register an application on [FusionFabric.cloud Developer Portal](https://developer.fusionfabric.cloud) and select both [Account and Balances - B2C](https://developer.fusionfabric.cloud/api/corporate-accounteinfo-me-v1-831cb09d-cc10-4772-8ed5-8a6b72ec8e01/docs) and [Exchange Rates and Currency Conversion ](https://developer.fusionfabric.cloud/api/fxrate-v1-f1ee44fa-bdd1-44ed-b4b5-50298b82f0d/docs) API .
+You need to register an application on [FusionFabric.cloud Developer Portal](https://developer.fusionfabric.cloud) and select [Account and Balances - B2C](https://developer.fusionfabric.cloud/api/corporate-accounteinfo-me-v1-831cb09d-cc10-4772-8ed5-8a6b72ec8e01/docs) API .
 
-2. Setup environment variables
+1. Setup environment variables
 
-Rename `.env.template` to `.env` and setup `OIDC_CLIENT_ID` , `OIDC_CLIENT_SECRET` , `OIDC_CLIENT_ID_B2B` and `OIDC_CLIENT_SECRET_B2B` from the application created at step 1.
+Rename `.env.template` to `.env` and setup `OIDC_CLIENT_ID` , `OIDC_CLIENT_SECRET` from the application created at step 1.
 
-3. Run `npm i`
+1. Run `npm i`
 
 <br/>
 
@@ -77,9 +77,7 @@ For testing purpose, you can login with one of the following credentials:
 | Variable                 | Default value                                                |
 | :----------------------- | :----------------------------------------------------------- |
 | `OIDC_CLIENT_ID`         |                                                              |
-| `CLIENT_SECRET`          |                                                              |
-| `OIDC_CLIENT_ID_B2B`     |                                                              |
-| `OIDC_CLIENT_SECRET_B2B` |                                                              |
+| `OIDC_CLIENT_SECRET`          |                                                              |                                                          |
 | `SESSION_SECRET`         | Generated uiid                                               |
 | `FFDC`                   | `https://api.fusionfabric.cloud`                             |
 | `PORT`                   | `3000`                                                       |
