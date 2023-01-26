@@ -81,7 +81,7 @@
     "zone.js": "0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "14.1.0",
+    "@angular-devkit/build-angular": "14.2.10",
     "@nestjs/testing": "^8.0.0",
     "@nrwl/jest": "14.3.4",
     "@nrwl/nest": "14.3.4",
